@@ -9,9 +9,9 @@
 pkg.torch.onnx.class_hierarchy´['torch.export._trace._non_strict_export.<locals>._tuplify_outputs.<locals>._aot_export_non_strict.<locals>.Wrapper', 'quantized_decomposed.dequantize_per_tensor.default']JÔ
 pkg.torch.onnx.fx_node‘%dequantize_per_tensor : [num_users=1] = call_function[target=torch.ops.quantized_decomposed.dequantize_per_tensor.default](args = (%b__frozen_param0, 0.005038516595959663, 0, -127, 127, torch.int8), kwargs = {})J;
 pkg.torch.onnx.name_scopes['', 'dequantize_per_tensor']J≥
-pkg.torch.onnx.stack_traceîFile "/home/hoku/repo/BraggNN/model.py", line 72, in forward
+pkg.torch.onnx.stack_traceîFile "/home/hoku/repo/BraggNN/model.py", line 76, in forward
     _out = self.nlb(_out)
-  File "/home/hoku/repo/BraggNN/model.py", line 25, in forward
+  File "/home/hoku/repo/BraggNN/model.py", line 27, in forward
     theta = self.theta_layer(x).view(mbsz, self.inter_ch, -1).permute(0, 2, 1)
   File "/home/hoku/repo/BraggNN/.venv/lib/python3.12/site-packages/torch/nn/modules/conv.py", line 548, in forward
     return self._conv_forward(input, self.weight, self.bias)
@@ -24,9 +24,9 @@
 pkg.torch.onnx.class_hierarchy´['torch.export._trace._non_strict_export.<locals>._tuplify_outputs.<locals>._aot_export_non_strict.<locals>.Wrapper', 'quantized_decomposed.dequantize_per_tensor.default']JÒ
 pkg.torch.onnx.fx_node÷%dequantize_per_tensor_1 : [num_users=1] = call_function[target=torch.ops.quantized_decomposed.dequantize_per_tensor.default](args = (%b__frozen_param1, 0.004156849812716246, 0, -127, 127, torch.int8), kwargs = {})J=
 pkg.torch.onnx.name_scopes['', 'dequantize_per_tensor_1']J†
-pkg.torch.onnx.stack_traceÅFile "/home/hoku/repo/BraggNN/model.py", line 72, in forward
+pkg.torch.onnx.stack_traceÅFile "/home/hoku/repo/BraggNN/model.py", line 76, in forward
     _out = self.nlb(_out)
-  File "/home/hoku/repo/BraggNN/model.py", line 26, in forward
+  File "/home/hoku/repo/BraggNN/model.py", line 28, in forward
     phi   = self.phi_layer(x).view(mbsz, self.inter_ch, -1)
   File "/home/hoku/repo/BraggNN/.venv/lib/python3.12/site-packages/torch/nn/modules/conv.py", line 548, in forward
     return self._conv_forward(input, self.weight, self.bias)
@@ -39,9 +39,9 @@
 pkg.torch.onnx.class_hierarchy´['torch.export._trace._non_strict_export.<locals>._tuplify_outputs.<locals>._aot_export_non_strict.<locals>.Wrapper', 'quantized_decomposed.dequantize_per_tensor.default']JÒ
 pkg.torch.onnx.fx_node÷%dequantize_per_tensor_2 : [num_users=1] = call_function[target=torch.ops.quantized_decomposed.dequantize_per_tensor.default](args = (%b__frozen_param2, 0.003560264129191637, 0, -127, 127, torch.int8), kwargs = {})J=
 pkg.torch.onnx.name_scopes['', 'dequantize_per_tensor_2']JØ
-pkg.torch.onnx.stack_traceêFile "/home/hoku/repo/BraggNN/model.py", line 72, in forward
+pkg.torch.onnx.stack_traceêFile "/home/hoku/repo/BraggNN/model.py", line 76, in forward
     _out = self.nlb(_out)
-  File "/home/hoku/repo/BraggNN/model.py", line 27, in forward
+  File "/home/hoku/repo/BraggNN/model.py", line 29, in forward
     g     = self.g_layer(x).view(mbsz, self.inter_ch, -1).permute(0, 2, 1)
   File "/home/hoku/repo/BraggNN/.venv/lib/python3.12/site-packages/torch/nn/modules/conv.py", line 548, in forward
     return self._conv_forward(input, self.weight, self.bias)
@@ -54,9 +54,9 @@
 pkg.torch.onnx.class_hierarchy´['torch.export._trace._non_strict_export.<locals>._tuplify_outputs.<locals>._aot_export_non_strict.<locals>.Wrapper', 'quantized_decomposed.dequantize_per_tensor.default']JÚ
 pkg.torch.onnx.fx_node◊%dequantize_per_tensor_3 : [num_users=1] = call_function[target=torch.ops.quantized_decomposed.dequantize_per_tensor.default](args = (%b__frozen_param3, 0.0036953752860426903, 0, -127, 127, torch.int8), kwargs = {})J=
 pkg.torch.onnx.name_scopes['', 'dequantize_per_tensor_3']Jç
-pkg.torch.onnx.stack_traceÓFile "/home/hoku/repo/BraggNN/model.py", line 72, in forward
+pkg.torch.onnx.stack_traceÓFile "/home/hoku/repo/BraggNN/model.py", line 76, in forward
     _out = self.nlb(_out)
-  File "/home/hoku/repo/BraggNN/model.py", line 33, in forward
+  File "/home/hoku/repo/BraggNN/model.py", line 35, in forward
     _out_tmp = self.out_cnn(theta_phi_g)
   File "/home/hoku/repo/BraggNN/.venv/lib/python3.12/site-packages/torch/nn/modules/conv.py", line 548, in forward
     return self._conv_forward(input, self.weight, self.bias)
@@ -69,7 +69,7 @@
 pkg.torch.onnx.class_hierarchy´['torch.export._trace._non_strict_export.<locals>._tuplify_outputs.<locals>._aot_export_non_strict.<locals>.Wrapper', 'quantized_decomposed.dequantize_per_tensor.default']JÒ
 pkg.torch.onnx.fx_node÷%dequantize_per_tensor_4 : [num_users=1] = call_function[target=torch.ops.quantized_decomposed.dequantize_per_tensor.default](args = (%b__frozen_param4, 0.005858459044247866, 0, -127, 127, torch.int8), kwargs = {})J=
 pkg.torch.onnx.name_scopes['', 'dequantize_per_tensor_4']J¢
-pkg.torch.onnx.stack_traceÉFile "/home/hoku/repo/BraggNN/model.py", line 70, in forward
+pkg.torch.onnx.stack_traceÉFile "/home/hoku/repo/BraggNN/model.py", line 74, in forward
     _out = layer(_out)
   File "/home/hoku/repo/BraggNN/.venv/lib/python3.12/site-packages/torch/nn/modules/conv.py", line 548, in forward
     return self._conv_forward(input, self.weight, self.bias)
@@ -82,7 +82,7 @@
 pkg.torch.onnx.class_hierarchy´['torch.export._trace._non_strict_export.<locals>._tuplify_outputs.<locals>._aot_export_non_strict.<locals>.Wrapper', 'quantized_decomposed.dequantize_per_tensor.default']JÒ
 pkg.torch.onnx.fx_node÷%dequantize_per_tensor_5 : [num_users=1] = call_function[target=torch.ops.quantized_decomposed.dequantize_per_tensor.default](args = (%b__frozen_param5, 0.007264274172484875, 0, -127, 127, torch.int8), kwargs = {})J=
 pkg.torch.onnx.name_scopes['', 'dequantize_per_tensor_5']J¢
-pkg.torch.onnx.stack_traceÉFile "/home/hoku/repo/BraggNN/model.py", line 75, in forward
+pkg.torch.onnx.stack_traceÉFile "/home/hoku/repo/BraggNN/model.py", line 79, in forward
     _out = layer(_out)
   File "/home/hoku/repo/BraggNN/.venv/lib/python3.12/site-packages/torch/nn/modules/conv.py", line 548, in forward
     return self._conv_forward(input, self.weight, self.bias)
@@ -95,7 +95,7 @@
 pkg.torch.onnx.class_hierarchy´['torch.export._trace._non_strict_export.<locals>._tuplify_outputs.<locals>._aot_export_non_strict.<locals>.Wrapper', 'quantized_decomposed.dequantize_per_tensor.default']JÚ
 pkg.torch.onnx.fx_node◊%dequantize_per_tensor_6 : [num_users=1] = call_function[target=torch.ops.quantized_decomposed.dequantize_per_tensor.default](args = (%b__frozen_param6, 0.0064983004704117775, 0, -127, 127, torch.int8), kwargs = {})J=
 pkg.torch.onnx.name_scopes['', 'dequantize_per_tensor_6']J¢
-pkg.torch.onnx.stack_traceÉFile "/home/hoku/repo/BraggNN/model.py", line 75, in forward
+pkg.torch.onnx.stack_traceÉFile "/home/hoku/repo/BraggNN/model.py", line 79, in forward
     _out = layer(_out)
   File "/home/hoku/repo/BraggNN/.venv/lib/python3.12/site-packages/torch/nn/modules/conv.py", line 548, in forward
     return self._conv_forward(input, self.weight, self.bias)
@@ -108,7 +108,7 @@
 pkg.torch.onnx.class_hierarchy´['torch.export._trace._non_strict_export.<locals>._tuplify_outputs.<locals>._aot_export_non_strict.<locals>.Wrapper', 'quantized_decomposed.dequantize_per_tensor.default']JÚ
 pkg.torch.onnx.fx_node◊%dequantize_per_tensor_7 : [num_users=1] = call_function[target=torch.ops.quantized_decomposed.dequantize_per_tensor.default](args = (%b__frozen_param7, 0.0065934923477470875, 0, -127, 127, torch.int8), kwargs = {})J=
 pkg.torch.onnx.name_scopes['', 'dequantize_per_tensor_7']Jö
-pkg.torch.onnx.stack_trace˚File "/home/hoku/repo/BraggNN/model.py", line 79, in forward
+pkg.torch.onnx.stack_trace˚File "/home/hoku/repo/BraggNN/model.py", line 83, in forward
     _out = layer(_out)
   File "/home/hoku/repo/BraggNN/.venv/lib/python3.12/site-packages/torch/nn/modules/linear.py", line 134, in forward
     return F.linear(input, self.weight, self.bias)
@@ -121,7 +121,7 @@
 pkg.torch.onnx.class_hierarchy´['torch.export._trace._non_strict_export.<locals>._tuplify_outputs.<locals>._aot_export_non_strict.<locals>.Wrapper', 'quantized_decomposed.dequantize_per_tensor.default']JÒ
 pkg.torch.onnx.fx_node÷%dequantize_per_tensor_8 : [num_users=1] = call_function[target=torch.ops.quantized_decomposed.dequantize_per_tensor.default](args = (%b__frozen_param8, 0.004962222184985876, 0, -127, 127, torch.int8), kwargs = {})J=
 pkg.torch.onnx.name_scopes['', 'dequantize_per_tensor_8']Jö
-pkg.torch.onnx.stack_trace˚File "/home/hoku/repo/BraggNN/model.py", line 79, in forward
+pkg.torch.onnx.stack_trace˚File "/home/hoku/repo/BraggNN/model.py", line 83, in forward
     _out = layer(_out)
   File "/home/hoku/repo/BraggNN/.venv/lib/python3.12/site-packages/torch/nn/modules/linear.py", line 134, in forward
     return F.linear(input, self.weight, self.bias)
@@ -134,7 +134,7 @@
 pkg.torch.onnx.class_hierarchy´['torch.export._trace._non_strict_export.<locals>._tuplify_outputs.<locals>._aot_export_non_strict.<locals>.Wrapper', 'quantized_decomposed.dequantize_per_tensor.default']JÒ
 pkg.torch.onnx.fx_node÷%dequantize_per_tensor_9 : [num_users=1] = call_function[target=torch.ops.quantized_decomposed.dequantize_per_tensor.default](args = (%b__frozen_param9, 0.004759461618959904, 0, -127, 127, torch.int8), kwargs = {})J=
 pkg.torch.onnx.name_scopes['', 'dequantize_per_tensor_9']Jö
-pkg.torch.onnx.stack_trace˚File "/home/hoku/repo/BraggNN/model.py", line 79, in forward
+pkg.torch.onnx.stack_trace˚File "/home/hoku/repo/BraggNN/model.py", line 83, in forward
     _out = layer(_out)
   File "/home/hoku/repo/BraggNN/.venv/lib/python3.12/site-packages/torch/nn/modules/linear.py", line 134, in forward
     return F.linear(input, self.weight, self.bias)
@@ -147,7 +147,7 @@
 pkg.torch.onnx.class_hierarchy´['torch.export._trace._non_strict_export.<locals>._tuplify_outputs.<locals>._aot_export_non_strict.<locals>.Wrapper', 'quantized_decomposed.dequantize_per_tensor.default']JÛ
 pkg.torch.onnx.fx_nodeÿ%dequantize_per_tensor_10 : [num_users=1] = call_function[target=torch.ops.quantized_decomposed.dequantize_per_tensor.default](args = (%b__frozen_param10, 0.008353105746209621, 0, -127, 127, torch.int8), kwargs = {})J>
 pkg.torch.onnx.name_scopes ['', 'dequantize_per_tensor_10']Jö
-pkg.torch.onnx.stack_trace˚File "/home/hoku/repo/BraggNN/model.py", line 79, in forward
+pkg.torch.onnx.stack_trace˚File "/home/hoku/repo/BraggNN/model.py", line 83, in forward
     _out = layer(_out)
   File "/home/hoku/repo/BraggNN/.venv/lib/python3.12/site-packages/torch/nn/modules/linear.py", line 134, in forward
     return F.linear(input, self.weight, self.bias)
@@ -160,7 +160,7 @@
 pkg.torch.onnx.class_hierarchy´['torch.export._trace._non_strict_export.<locals>._tuplify_outputs.<locals>._aot_export_non_strict.<locals>.Wrapper', 'quantized_decomposed.dequantize_per_tensor.default']JÛ
 pkg.torch.onnx.fx_nodeÿ%dequantize_per_tensor_11 : [num_users=1] = call_function[target=torch.ops.quantized_decomposed.dequantize_per_tensor.default](args = (%b__frozen_param11, 0.006360731087625027, 0, -127, 127, torch.int8), kwargs = {})J>
 pkg.torch.onnx.name_scopes ['', 'dequantize_per_tensor_11']Jö
-pkg.torch.onnx.stack_trace˚File "/home/hoku/repo/BraggNN/model.py", line 79, in forward
+pkg.torch.onnx.stack_trace˚File "/home/hoku/repo/BraggNN/model.py", line 83, in forward
     _out = layer(_out)
   File "/home/hoku/repo/BraggNN/.venv/lib/python3.12/site-packages/torch/nn/modules/linear.py", line 134, in forward
     return F.linear(input, self.weight, self.bias)
@@ -183,7 +183,7 @@
 pkg.torch.onnx.class_hierarchy´['torch.export._trace._non_strict_export.<locals>._tuplify_outputs.<locals>._aot_export_non_strict.<locals>.Wrapper', 'quantized_decomposed.dequantize_per_tensor.default']J¯
 pkg.torch.onnx.fx_node›%dequantize_per_tensor_12 : [num_users=1] = call_function[target=torch.ops.quantized_decomposed.dequantize_per_tensor.default](args = (%quantize_per_tensor, 0.003919653594493866, -128, -128, 127, torch.int8), kwargs = {})J>
 pkg.torch.onnx.name_scopes ['', 'dequantize_per_tensor_12']J¢
-pkg.torch.onnx.stack_traceÉFile "/home/hoku/repo/BraggNN/model.py", line 70, in forward
+pkg.torch.onnx.stack_traceÉFile "/home/hoku/repo/BraggNN/model.py", line 74, in forward
     _out = layer(_out)
   File "/home/hoku/repo/BraggNN/.venv/lib/python3.12/site-packages/torch/nn/modules/conv.py", line 548, in forward
     return self._conv_forward(input, self.weight, self.bias)
@@ -200,7 +200,7 @@
 pkg.torch.onnx.class_hierarchyH['model.BraggNN', 'torch.nn.modules.conv.Conv2d', 'aten.conv2d.default']J…
 pkg.torch.onnx.fx_nodeÆ%conv2d : [num_users=1] = call_function[target=torch.ops.aten.conv2d.default](args = (%dequantize_per_tensor_12, %dequantize_per_tensor_4, %p_cnn_layers_0_bias), kwargs = {})J<
 pkg.torch.onnx.name_scopes['', 'cnn_layers.0', 'conv2d']J¢
-pkg.torch.onnx.stack_traceÉFile "/home/hoku/repo/BraggNN/model.py", line 70, in forward
+pkg.torch.onnx.stack_traceÉFile "/home/hoku/repo/BraggNN/model.py", line 74, in forward
     _out = layer(_out)
   File "/home/hoku/repo/BraggNN/.venv/lib/python3.12/site-packages/torch/nn/modules/conv.py", line 548, in forward
     return self._conv_forward(input, self.weight, self.bias)
@@ -213,7 +213,7 @@
 pkg.torch.onnx.class_hierarchy©['torch.export._trace._non_strict_export.<locals>._tuplify_outputs.<locals>._aot_export_non_strict.<locals>.Wrapper', 'quantized_decomposed.quantize_per_tensor.default']J„
 pkg.torch.onnx.fx_node»%quantize_per_tensor_1 : [num_users=4] = call_function[target=torch.ops.quantized_decomposed.quantize_per_tensor.default](args = (%conv2d, 0.00504319416359067, 74, -128, 127, torch.int8), kwargs = {})J;
 pkg.torch.onnx.name_scopes['', 'quantize_per_tensor_1']J¢
-pkg.torch.onnx.stack_traceÉFile "/home/hoku/repo/BraggNN/model.py", line 70, in forward
+pkg.torch.onnx.stack_traceÉFile "/home/hoku/repo/BraggNN/model.py", line 74, in forward
     _out = layer(_out)
   File "/home/hoku/repo/BraggNN/.venv/lib/python3.12/site-packages/torch/nn/modules/conv.py", line 548, in forward
     return self._conv_forward(input, self.weight, self.bias)
@@ -226,9 +226,9 @@
 pkg.torch.onnx.class_hierarchy´['torch.export._trace._non_strict_export.<locals>._tuplify_outputs.<locals>._aot_export_non_strict.<locals>.Wrapper', 'quantized_decomposed.dequantize_per_tensor.default']J˜
 pkg.torch.onnx.fx_node‹%dequantize_per_tensor_13 : [num_users=1] = call_function[target=torch.ops.quantized_decomposed.dequantize_per_tensor.default](args = (%quantize_per_tensor_1, 0.00504319416359067, 74, -128, 127, torch.int8), kwargs = {})J>
 pkg.torch.onnx.name_scopes ['', 'dequantize_per_tensor_13']J⁄
-pkg.torch.onnx.stack_traceªFile "/home/hoku/repo/BraggNN/model.py", line 72, in forward
+pkg.torch.onnx.stack_traceªFile "/home/hoku/repo/BraggNN/model.py", line 76, in forward
     _out = self.nlb(_out)
-  File "/home/hoku/repo/BraggNN/model.py", line 34, in forward
+  File "/home/hoku/repo/BraggNN/model.py", line 36, in forward
     _out_tmp = torch.add(_out_tmp, x)
 Ö	
 dequantize_per_tensor_13
@@ -243,9 +243,9 @@
 pkg.torch.onnx.class_hierarchyU['model.BraggNN', 'model.NLB', 'torch.nn.modules.conv.Conv2d', 'aten.conv2d.default']JÃ
 pkg.torch.onnx.fx_node±%conv2d_1 : [num_users=1] = call_function[target=torch.ops.aten.conv2d.default](args = (%dequantize_per_tensor_16, %dequantize_per_tensor, %p_nlb_theta_layer_bias), kwargs = {})JH
 pkg.torch.onnx.name_scopes*['', 'nlb', 'nlb.theta_layer', 'conv2d_1']J≥
-pkg.torch.onnx.stack_traceîFile "/home/hoku/repo/BraggNN/model.py", line 72, in forward
+pkg.torch.onnx.stack_traceîFile "/home/hoku/repo/BraggNN/model.py", line 76, in forward
     _out = self.nlb(_out)
-  File "/home/hoku/repo/BraggNN/model.py", line 25, in forward
+  File "/home/hoku/repo/BraggNN/model.py", line 27, in forward
     theta = self.theta_layer(x).view(mbsz, self.inter_ch, -1).permute(0, 2, 1)
   File "/home/hoku/repo/BraggNN/.venv/lib/python3.12/site-packages/torch/nn/modules/conv.py", line 548, in forward
     return self._conv_forward(input, self.weight, self.bias)
@@ -258,9 +258,9 @@
 pkg.torch.onnx.class_hierarchy©['torch.export._trace._non_strict_export.<locals>._tuplify_outputs.<locals>._aot_export_non_strict.<locals>.Wrapper', 'quantized_decomposed.quantize_per_tensor.default']JÂ
 pkg.torch.onnx.fx_node %quantize_per_tensor_2 : [num_users=1] = call_function[target=torch.ops.quantized_decomposed.quantize_per_tensor.default](args = (%conv2d_1, 0.008710766211152077, 3, -128, 127, torch.int8), kwargs = {})J;
 pkg.torch.onnx.name_scopes['', 'quantize_per_tensor_2']J≥
-pkg.torch.onnx.stack_traceîFile "/home/hoku/repo/BraggNN/model.py", line 72, in forward
+pkg.torch.onnx.stack_traceîFile "/home/hoku/repo/BraggNN/model.py", line 76, in forward
     _out = self.nlb(_out)
-  File "/home/hoku/repo/BraggNN/model.py", line 25, in forward
+  File "/home/hoku/repo/BraggNN/model.py", line 27, in forward
     theta = self.theta_layer(x).view(mbsz, self.inter_ch, -1).permute(0, 2, 1)
   File "/home/hoku/repo/BraggNN/.venv/lib/python3.12/site-packages/torch/nn/modules/conv.py", line 548, in forward
     return self._conv_forward(input, self.weight, self.bias)
@@ -273,9 +273,9 @@
 pkg.torch.onnx.class_hierarchy´['torch.export._trace._non_strict_export.<locals>._tuplify_outputs.<locals>._aot_export_non_strict.<locals>.Wrapper', 'quantized_decomposed.dequantize_per_tensor.default']J˜
 pkg.torch.onnx.fx_node‹%dequantize_per_tensor_17 : [num_users=1] = call_function[target=torch.ops.quantized_decomposed.dequantize_per_tensor.default](args = (%quantize_per_tensor_2, 0.008710766211152077, 3, -128, 127, torch.int8), kwargs = {})J>
 pkg.torch.onnx.name_scopes ['', 'dequantize_per_tensor_17']JÉ
-pkg.torch.onnx.stack_trace‰File "/home/hoku/repo/BraggNN/model.py", line 72, in forward
+pkg.torch.onnx.stack_trace‰File "/home/hoku/repo/BraggNN/model.py", line 76, in forward
     _out = self.nlb(_out)
-  File "/home/hoku/repo/BraggNN/model.py", line 25, in forward
+  File "/home/hoku/repo/BraggNN/model.py", line 27, in forward
     theta = self.theta_layer(x).view(mbsz, self.inter_ch, -1).permute(0, 2, 1)
 »
 dequantize_per_tensor_17
@@ -285,9 +285,9 @@
 pkg.torch.onnx.class_hierarchy3['model.BraggNN', 'model.NLB', 'aten.view.default']J¢
 pkg.torch.onnx.fx_nodeá%view : [num_users=1] = call_function[target=torch.ops.aten.view.default](args = (%dequantize_per_tensor_17, [1, 32, -1]), kwargs = {})J1
 pkg.torch.onnx.name_scopes['', 'nlb', 'view']JÉ
-pkg.torch.onnx.stack_trace‰File "/home/hoku/repo/BraggNN/model.py", line 72, in forward
+pkg.torch.onnx.stack_trace‰File "/home/hoku/repo/BraggNN/model.py", line 76, in forward
     _out = self.nlb(_out)
-  File "/home/hoku/repo/BraggNN/model.py", line 25, in forward
+  File "/home/hoku/repo/BraggNN/model.py", line 27, in forward
     theta = self.theta_layer(x).view(mbsz, self.inter_ch, -1).permute(0, 2, 1)
 ®
 view
@@ -298,9 +298,9 @@
 pkg.torch.onnx.class_hierarchy©['torch.export._trace._non_strict_export.<locals>._tuplify_outputs.<locals>._aot_export_non_strict.<locals>.Wrapper', 'quantized_decomposed.quantize_per_tensor.default']J·
 pkg.torch.onnx.fx_node∆%quantize_per_tensor_3 : [num_users=1] = call_function[target=torch.ops.quantized_decomposed.quantize_per_tensor.default](args = (%view, 0.008710766211152077, 3, -128, 127, torch.int8), kwargs = {})J;
 pkg.torch.onnx.name_scopes['', 'quantize_per_tensor_3']JÉ
-pkg.torch.onnx.stack_trace‰File "/home/hoku/repo/BraggNN/model.py", line 72, in forward
+pkg.torch.onnx.stack_trace‰File "/home/hoku/repo/BraggNN/model.py", line 76, in forward
     _out = self.nlb(_out)
-  File "/home/hoku/repo/BraggNN/model.py", line 25, in forward
+  File "/home/hoku/repo/BraggNN/model.py", line 27, in forward
     theta = self.theta_layer(x).view(mbsz, self.inter_ch, -1).permute(0, 2, 1)
 ·
 quantize_per_tensor_3
@@ -311,9 +311,9 @@
 pkg.torch.onnx.class_hierarchy´['torch.export._trace._non_strict_export.<locals>._tuplify_outputs.<locals>._aot_export_non_strict.<locals>.Wrapper', 'quantized_decomposed.dequantize_per_tensor.default']J˜
 pkg.torch.onnx.fx_node‹%dequantize_per_tensor_18 : [num_users=1] = call_function[target=torch.ops.quantized_decomposed.dequantize_per_tensor.default](args = (%quantize_per_tensor_3, 0.008710766211152077, 3, -128, 127, torch.int8), kwargs = {})J>
 pkg.torch.onnx.name_scopes ['', 'dequantize_per_tensor_18']JÉ
-pkg.torch.onnx.stack_trace‰File "/home/hoku/repo/BraggNN/model.py", line 72, in forward
+pkg.torch.onnx.stack_trace‰File "/home/hoku/repo/BraggNN/model.py", line 76, in forward
     _out = self.nlb(_out)
-  File "/home/hoku/repo/BraggNN/model.py", line 25, in forward
+  File "/home/hoku/repo/BraggNN/model.py", line 27, in forward
     theta = self.theta_layer(x).view(mbsz, self.inter_ch, -1).permute(0, 2, 1)
 ◊
 dequantize_per_tensor_18permutenode_permute"	Transpose*
@@ -322,9 +322,9 @@
 pkg.torch.onnx.class_hierarchy6['model.BraggNN', 'model.NLB', 'aten.permute.default']J¶
 pkg.torch.onnx.fx_nodeã%permute : [num_users=1] = call_function[target=torch.ops.aten.permute.default](args = (%dequantize_per_tensor_18, [0, 2, 1]), kwargs = {})J4
 pkg.torch.onnx.name_scopes['', 'nlb', 'permute']JÉ
-pkg.torch.onnx.stack_trace‰File "/home/hoku/repo/BraggNN/model.py", line 72, in forward
+pkg.torch.onnx.stack_trace‰File "/home/hoku/repo/BraggNN/model.py", line 76, in forward
     _out = self.nlb(_out)
-  File "/home/hoku/repo/BraggNN/model.py", line 25, in forward
+  File "/home/hoku/repo/BraggNN/model.py", line 27, in forward
     theta = self.theta_layer(x).view(mbsz, self.inter_ch, -1).permute(0, 2, 1)
 Æ
 permute
@@ -335,9 +335,9 @@
 pkg.torch.onnx.class_hierarchy©['torch.export._trace._non_strict_export.<locals>._tuplify_outputs.<locals>._aot_export_non_strict.<locals>.Wrapper', 'quantized_decomposed.quantize_per_tensor.default']J‰
 pkg.torch.onnx.fx_node…%quantize_per_tensor_4 : [num_users=1] = call_function[target=torch.ops.quantized_decomposed.quantize_per_tensor.default](args = (%permute, 0.008710766211152077, 3, -128, 127, torch.int8), kwargs = {})J;
 pkg.torch.onnx.name_scopes['', 'quantize_per_tensor_4']JÉ
-pkg.torch.onnx.stack_trace‰File "/home/hoku/repo/BraggNN/model.py", line 72, in forward
+pkg.torch.onnx.stack_trace‰File "/home/hoku/repo/BraggNN/model.py", line 76, in forward
     _out = self.nlb(_out)
-  File "/home/hoku/repo/BraggNN/model.py", line 25, in forward
+  File "/home/hoku/repo/BraggNN/model.py", line 27, in forward
     theta = self.theta_layer(x).view(mbsz, self.inter_ch, -1).permute(0, 2, 1)
 ˚
 quantize_per_tensor_4
@@ -362,9 +362,9 @@
 pkg.torch.onnx.class_hierarchyU['model.BraggNN', 'model.NLB', 'torch.nn.modules.conv.Conv2d', 'aten.conv2d.default']JÃ
 pkg.torch.onnx.fx_node±%conv2d_2 : [num_users=1] = call_function[target=torch.ops.aten.conv2d.default](args = (%dequantize_per_tensor_15, %dequantize_per_tensor_1, %p_nlb_phi_layer_bias), kwargs = {})JF
 pkg.torch.onnx.name_scopes(['', 'nlb', 'nlb.phi_layer', 'conv2d_2']J†
-pkg.torch.onnx.stack_traceÅFile "/home/hoku/repo/BraggNN/model.py", line 72, in forward
+pkg.torch.onnx.stack_traceÅFile "/home/hoku/repo/BraggNN/model.py", line 76, in forward
     _out = self.nlb(_out)
-  File "/home/hoku/repo/BraggNN/model.py", line 26, in forward
+  File "/home/hoku/repo/BraggNN/model.py", line 28, in forward
     phi   = self.phi_layer(x).view(mbsz, self.inter_ch, -1)
   File "/home/hoku/repo/BraggNN/.venv/lib/python3.12/site-packages/torch/nn/modules/conv.py", line 548, in forward
     return self._conv_forward(input, self.weight, self.bias)
@@ -377,9 +377,9 @@
 pkg.torch.onnx.class_hierarchy©['torch.export._trace._non_strict_export.<locals>._tuplify_outputs.<locals>._aot_export_non_strict.<locals>.Wrapper', 'quantized_decomposed.quantize_per_tensor.default']JÂ
 pkg.torch.onnx.fx_node %quantize_per_tensor_5 : [num_users=1] = call_function[target=torch.ops.quantized_decomposed.quantize_per_tensor.default](args = (%conv2d_2, 0.006233153864741325, 9, -128, 127, torch.int8), kwargs = {})J;
 pkg.torch.onnx.name_scopes['', 'quantize_per_tensor_5']J†
-pkg.torch.onnx.stack_traceÅFile "/home/hoku/repo/BraggNN/model.py", line 72, in forward
+pkg.torch.onnx.stack_traceÅFile "/home/hoku/repo/BraggNN/model.py", line 76, in forward
     _out = self.nlb(_out)
-  File "/home/hoku/repo/BraggNN/model.py", line 26, in forward
+  File "/home/hoku/repo/BraggNN/model.py", line 28, in forward
     phi   = self.phi_layer(x).view(mbsz, self.inter_ch, -1)
   File "/home/hoku/repo/BraggNN/.venv/lib/python3.12/site-packages/torch/nn/modules/conv.py", line 548, in forward
     return self._conv_forward(input, self.weight, self.bias)
@@ -392,9 +392,9 @@
 pkg.torch.onnx.class_hierarchy´['torch.export._trace._non_strict_export.<locals>._tuplify_outputs.<locals>._aot_export_non_strict.<locals>.Wrapper', 'quantized_decomposed.dequantize_per_tensor.default']J˜
 pkg.torch.onnx.fx_node‹%dequantize_per_tensor_20 : [num_users=1] = call_function[target=torch.ops.quantized_decomposed.dequantize_per_tensor.default](args = (%quantize_per_tensor_5, 0.006233153864741325, 9, -128, 127, torch.int8), kwargs = {})J>
 pkg.torch.onnx.name_scopes ['', 'dequantize_per_tensor_20']J
-pkg.torch.onnx.stack_trace—File "/home/hoku/repo/BraggNN/model.py", line 72, in forward
+pkg.torch.onnx.stack_trace—File "/home/hoku/repo/BraggNN/model.py", line 76, in forward
     _out = self.nlb(_out)
-  File "/home/hoku/repo/BraggNN/model.py", line 26, in forward
+  File "/home/hoku/repo/BraggNN/model.py", line 28, in forward
     phi   = self.phi_layer(x).view(mbsz, self.inter_ch, -1)
 ø
 dequantize_per_tensor_20
@@ -404,9 +404,9 @@
 pkg.torch.onnx.class_hierarchy3['model.BraggNN', 'model.NLB', 'aten.view.default']J§
 pkg.torch.onnx.fx_nodeâ%view_1 : [num_users=1] = call_function[target=torch.ops.aten.view.default](args = (%dequantize_per_tensor_20, [1, 32, -1]), kwargs = {})J3
 pkg.torch.onnx.name_scopes['', 'nlb', 'view_1']J
-pkg.torch.onnx.stack_trace—File "/home/hoku/repo/BraggNN/model.py", line 72, in forward
+pkg.torch.onnx.stack_trace—File "/home/hoku/repo/BraggNN/model.py", line 76, in forward
     _out = self.nlb(_out)
-  File "/home/hoku/repo/BraggNN/model.py", line 26, in forward
+  File "/home/hoku/repo/BraggNN/model.py", line 28, in forward
     phi   = self.phi_layer(x).view(mbsz, self.inter_ch, -1)
 ô
 view_1
@@ -417,9 +417,9 @@
 pkg.torch.onnx.class_hierarchy©['torch.export._trace._non_strict_export.<locals>._tuplify_outputs.<locals>._aot_export_non_strict.<locals>.Wrapper', 'quantized_decomposed.quantize_per_tensor.default']J„
 pkg.torch.onnx.fx_node»%quantize_per_tensor_6 : [num_users=1] = call_function[target=torch.ops.quantized_decomposed.quantize_per_tensor.default](args = (%view_1, 0.006233153864741325, 9, -128, 127, torch.int8), kwargs = {})J;
 pkg.torch.onnx.name_scopes['', 'quantize_per_tensor_6']J
-pkg.torch.onnx.stack_trace—File "/home/hoku/repo/BraggNN/model.py", line 72, in forward
+pkg.torch.onnx.stack_trace—File "/home/hoku/repo/BraggNN/model.py", line 76, in forward
     _out = self.nlb(_out)
-  File "/home/hoku/repo/BraggNN/model.py", line 26, in forward
+  File "/home/hoku/repo/BraggNN/model.py", line 28, in forward
     phi   = self.phi_layer(x).view(mbsz, self.inter_ch, -1)
 ˚
 quantize_per_tensor_6
@@ -444,9 +444,9 @@
 pkg.torch.onnx.class_hierarchyU['model.BraggNN', 'model.NLB', 'torch.nn.modules.conv.Conv2d', 'aten.conv2d.default']J 
 pkg.torch.onnx.fx_nodeØ%conv2d_3 : [num_users=1] = call_function[target=torch.ops.aten.conv2d.default](args = (%dequantize_per_tensor_14, %dequantize_per_tensor_2, %p_nlb_g_layer_bias), kwargs = {})JD
 pkg.torch.onnx.name_scopes&['', 'nlb', 'nlb.g_layer', 'conv2d_3']JØ
-pkg.torch.onnx.stack_traceêFile "/home/hoku/repo/BraggNN/model.py", line 72, in forward
+pkg.torch.onnx.stack_traceêFile "/home/hoku/repo/BraggNN/model.py", line 76, in forward
     _out = self.nlb(_out)
-  File "/home/hoku/repo/BraggNN/model.py", line 27, in forward
+  File "/home/hoku/repo/BraggNN/model.py", line 29, in forward
     g     = self.g_layer(x).view(mbsz, self.inter_ch, -1).permute(0, 2, 1)
   File "/home/hoku/repo/BraggNN/.venv/lib/python3.12/site-packages/torch/nn/modules/conv.py", line 548, in forward
     return self._conv_forward(input, self.weight, self.bias)
@@ -459,9 +459,9 @@
 pkg.torch.onnx.class_hierarchy©['torch.export._trace._non_strict_export.<locals>._tuplify_outputs.<locals>._aot_export_non_strict.<locals>.Wrapper', 'quantized_decomposed.quantize_per_tensor.default']JÂ
 pkg.torch.onnx.fx_node %quantize_per_tensor_7 : [num_users=1] = call_function[target=torch.ops.quantized_decomposed.quantize_per_tensor.default](args = (%conv2d_3, 0.006400818936526775, 4, -128, 127, torch.int8), kwargs = {})J;
 pkg.torch.onnx.name_scopes['', 'quantize_per_tensor_7']JØ
-pkg.torch.onnx.stack_traceêFile "/home/hoku/repo/BraggNN/model.py", line 72, in forward
+pkg.torch.onnx.stack_traceêFile "/home/hoku/repo/BraggNN/model.py", line 76, in forward
     _out = self.nlb(_out)
-  File "/home/hoku/repo/BraggNN/model.py", line 27, in forward
+  File "/home/hoku/repo/BraggNN/model.py", line 29, in forward
     g     = self.g_layer(x).view(mbsz, self.inter_ch, -1).permute(0, 2, 1)
   File "/home/hoku/repo/BraggNN/.venv/lib/python3.12/site-packages/torch/nn/modules/conv.py", line 548, in forward
     return self._conv_forward(input, self.weight, self.bias)
@@ -474,9 +474,9 @@
 pkg.torch.onnx.class_hierarchy´['torch.export._trace._non_strict_export.<locals>._tuplify_outputs.<locals>._aot_export_non_strict.<locals>.Wrapper', 'quantized_decomposed.dequantize_per_tensor.default']J˜
 pkg.torch.onnx.fx_node‹%dequantize_per_tensor_22 : [num_users=1] = call_function[target=torch.ops.quantized_decomposed.dequantize_per_tensor.default](args = (%quantize_per_tensor_7, 0.006400818936526775, 4, -128, 127, torch.int8), kwargs = {})J>
 pkg.torch.onnx.name_scopes ['', 'dequantize_per_tensor_22']Jˇ
-pkg.torch.onnx.stack_trace‡File "/home/hoku/repo/BraggNN/model.py", line 72, in forward
+pkg.torch.onnx.stack_trace‡File "/home/hoku/repo/BraggNN/model.py", line 76, in forward
     _out = self.nlb(_out)
-  File "/home/hoku/repo/BraggNN/model.py", line 27, in forward
+  File "/home/hoku/repo/BraggNN/model.py", line 29, in forward
     g     = self.g_layer(x).view(mbsz, self.inter_ch, -1).permute(0, 2, 1)
 Œ
 dequantize_per_tensor_22
@@ -486,9 +486,9 @@
 pkg.torch.onnx.class_hierarchy3['model.BraggNN', 'model.NLB', 'aten.view.default']J§
 pkg.torch.onnx.fx_nodeâ%view_2 : [num_users=1] = call_function[target=torch.ops.aten.view.default](args = (%dequantize_per_tensor_22, [1, 32, -1]), kwargs = {})J3
 pkg.torch.onnx.name_scopes['', 'nlb', 'view_2']Jˇ
-pkg.torch.onnx.stack_trace‡File "/home/hoku/repo/BraggNN/model.py", line 72, in forward
+pkg.torch.onnx.stack_trace‡File "/home/hoku/repo/BraggNN/model.py", line 76, in forward
     _out = self.nlb(_out)
-  File "/home/hoku/repo/BraggNN/model.py", line 27, in forward
+  File "/home/hoku/repo/BraggNN/model.py", line 29, in forward
     g     = self.g_layer(x).view(mbsz, self.inter_ch, -1).permute(0, 2, 1)
 ®
 view_2
@@ -499,9 +499,9 @@
 pkg.torch.onnx.class_hierarchy©['torch.export._trace._non_strict_export.<locals>._tuplify_outputs.<locals>._aot_export_non_strict.<locals>.Wrapper', 'quantized_decomposed.quantize_per_tensor.default']J„
 pkg.torch.onnx.fx_node»%quantize_per_tensor_8 : [num_users=1] = call_function[target=torch.ops.quantized_decomposed.quantize_per_tensor.default](args = (%view_2, 0.006400818936526775, 4, -128, 127, torch.int8), kwargs = {})J;
 pkg.torch.onnx.name_scopes['', 'quantize_per_tensor_8']Jˇ
-pkg.torch.onnx.stack_trace‡File "/home/hoku/repo/BraggNN/model.py", line 72, in forward
+pkg.torch.onnx.stack_trace‡File "/home/hoku/repo/BraggNN/model.py", line 76, in forward
     _out = self.nlb(_out)
-  File "/home/hoku/repo/BraggNN/model.py", line 27, in forward
+  File "/home/hoku/repo/BraggNN/model.py", line 29, in forward
     g     = self.g_layer(x).view(mbsz, self.inter_ch, -1).permute(0, 2, 1)
 ›
 quantize_per_tensor_8
@@ -512,9 +512,9 @@
 pkg.torch.onnx.class_hierarchy´['torch.export._trace._non_strict_export.<locals>._tuplify_outputs.<locals>._aot_export_non_strict.<locals>.Wrapper', 'quantized_decomposed.dequantize_per_tensor.default']J˜
 pkg.torch.onnx.fx_node‹%dequantize_per_tensor_23 : [num_users=1] = call_function[target=torch.ops.quantized_decomposed.dequantize_per_tensor.default](args = (%quantize_per_tensor_8, 0.006400818936526775, 4, -128, 127, torch.int8), kwargs = {})J>
 pkg.torch.onnx.name_scopes ['', 'dequantize_per_tensor_23']Jˇ
-pkg.torch.onnx.stack_trace‡File "/home/hoku/repo/BraggNN/model.py", line 72, in forward
+pkg.torch.onnx.stack_trace‡File "/home/hoku/repo/BraggNN/model.py", line 76, in forward
     _out = self.nlb(_out)
-  File "/home/hoku/repo/BraggNN/model.py", line 27, in forward
+  File "/home/hoku/repo/BraggNN/model.py", line 29, in forward
     g     = self.g_layer(x).view(mbsz, self.inter_ch, -1).permute(0, 2, 1)
 ›
 dequantize_per_tensor_23	permute_1node_permute_1"	Transpose*
@@ -523,9 +523,9 @@
 pkg.torch.onnx.class_hierarchy6['model.BraggNN', 'model.NLB', 'aten.permute.default']J®
 pkg.torch.onnx.fx_nodeç%permute_1 : [num_users=1] = call_function[target=torch.ops.aten.permute.default](args = (%dequantize_per_tensor_23, [0, 2, 1]), kwargs = {})J6
 pkg.torch.onnx.name_scopes['', 'nlb', 'permute_1']Jˇ
-pkg.torch.onnx.stack_trace‡File "/home/hoku/repo/BraggNN/model.py", line 72, in forward
+pkg.torch.onnx.stack_trace‡File "/home/hoku/repo/BraggNN/model.py", line 76, in forward
     _out = self.nlb(_out)
-  File "/home/hoku/repo/BraggNN/model.py", line 27, in forward
+  File "/home/hoku/repo/BraggNN/model.py", line 29, in forward
     g     = self.g_layer(x).view(mbsz, self.inter_ch, -1).permute(0, 2, 1)
 Æ
 	permute_1
@@ -536,9 +536,9 @@
 pkg.torch.onnx.class_hierarchy©['torch.export._trace._non_strict_export.<locals>._tuplify_outputs.<locals>._aot_export_non_strict.<locals>.Wrapper', 'quantized_decomposed.quantize_per_tensor.default']JÊ
 pkg.torch.onnx.fx_nodeÀ%quantize_per_tensor_9 : [num_users=1] = call_function[target=torch.ops.quantized_decomposed.quantize_per_tensor.default](args = (%permute_1, 0.006400818936526775, 4, -128, 127, torch.int8), kwargs = {})J;
 pkg.torch.onnx.name_scopes['', 'quantize_per_tensor_9']Jˇ
-pkg.torch.onnx.stack_trace‡File "/home/hoku/repo/BraggNN/model.py", line 72, in forward
+pkg.torch.onnx.stack_trace‡File "/home/hoku/repo/BraggNN/model.py", line 76, in forward
     _out = self.nlb(_out)
-  File "/home/hoku/repo/BraggNN/model.py", line 27, in forward
+  File "/home/hoku/repo/BraggNN/model.py", line 29, in forward
     g     = self.g_layer(x).view(mbsz, self.inter_ch, -1).permute(0, 2, 1)
 ˚
 quantize_per_tensor_9
@@ -557,9 +557,9 @@
 pkg.torch.onnx.class_hierarchy5['model.BraggNN', 'model.NLB', 'aten.matmul.default']J¥
 pkg.torch.onnx.fx_nodeô%matmul : [num_users=1] = call_function[target=torch.ops.aten.matmul.default](args = (%dequantize_per_tensor_19, %dequantize_per_tensor_21), kwargs = {})J3
 pkg.torch.onnx.name_scopes['', 'nlb', 'matmul']JÌ
-pkg.torch.onnx.stack_traceŒFile "/home/hoku/repo/BraggNN/model.py", line 72, in forward
+pkg.torch.onnx.stack_traceŒFile "/home/hoku/repo/BraggNN/model.py", line 76, in forward
     _out = self.nlb(_out)
-  File "/home/hoku/repo/BraggNN/model.py", line 29, in forward
+  File "/home/hoku/repo/BraggNN/model.py", line 31, in forward
     theta_phi = self.atten_act(torch.matmul(theta, phi))
 ¶
 matmulsoftmaxnode_softmax"Softmax*
@@ -568,9 +568,9 @@
 pkg.torch.onnx.class_hierarchyY['model.BraggNN', 'model.NLB', 'torch.nn.modules.activation.Softmax', 'aten.softmax.int']Jà
 pkg.torch.onnx.fx_noden%softmax : [num_users=1] = call_function[target=torch.ops.aten.softmax.int](args = (%matmul, -1), kwargs = {})JE
 pkg.torch.onnx.name_scopes'['', 'nlb', 'nlb.atten_act', 'softmax']Jú
-pkg.torch.onnx.stack_trace˝File "/home/hoku/repo/BraggNN/model.py", line 72, in forward
+pkg.torch.onnx.stack_trace˝File "/home/hoku/repo/BraggNN/model.py", line 76, in forward
     _out = self.nlb(_out)
-  File "/home/hoku/repo/BraggNN/model.py", line 29, in forward
+  File "/home/hoku/repo/BraggNN/model.py", line 31, in forward
     theta_phi = self.atten_act(torch.matmul(theta, phi))
   File "/home/hoku/repo/BraggNN/.venv/lib/python3.12/site-packages/torch/nn/modules/activation.py", line 1811, in forward
     return F.softmax(input, self.dim, _stacklevel=5)
@@ -581,9 +581,9 @@
 pkg.torch.onnx.class_hierarchy5['model.BraggNN', 'model.NLB', 'aten.matmul.default']J•
 pkg.torch.onnx.fx_nodeä%matmul_1 : [num_users=1] = call_function[target=torch.ops.aten.matmul.default](args = (%softmax, %dequantize_per_tensor_24), kwargs = {})J5
 pkg.torch.onnx.name_scopes['', 'nlb', 'matmul_1']Jí
-pkg.torch.onnx.stack_traceÛFile "/home/hoku/repo/BraggNN/model.py", line 72, in forward
+pkg.torch.onnx.stack_traceÛFile "/home/hoku/repo/BraggNN/model.py", line 76, in forward
     _out = self.nlb(_out)
-  File "/home/hoku/repo/BraggNN/model.py", line 31, in forward
+  File "/home/hoku/repo/BraggNN/model.py", line 33, in forward
     theta_phi_g = torch.matmul(theta_phi, g).permute(0, 2, 1).view(mbsz, self.inter_ch, h, w)
 œ
 matmul_1	permute_2node_permute_2"	Transpose*
@@ -592,9 +592,9 @@
 pkg.torch.onnx.class_hierarchy6['model.BraggNN', 'model.NLB', 'aten.permute.default']Jó
 pkg.torch.onnx.fx_node}%permute_2 : [num_users=1] = call_function[target=torch.ops.aten.permute.default](args = (%matmul_1, [0, 2, 1]), kwargs = {})J6
 pkg.torch.onnx.name_scopes['', 'nlb', 'permute_2']Jí
-pkg.torch.onnx.stack_traceÛFile "/home/hoku/repo/BraggNN/model.py", line 72, in forward
+pkg.torch.onnx.stack_traceÛFile "/home/hoku/repo/BraggNN/model.py", line 76, in forward
     _out = self.nlb(_out)
-  File "/home/hoku/repo/BraggNN/model.py", line 31, in forward
+  File "/home/hoku/repo/BraggNN/model.py", line 33, in forward
     theta_phi_g = torch.matmul(theta_phi, g).permute(0, 2, 1).view(mbsz, self.inter_ch, h, w)
 ƒ
 	permute_2
@@ -604,9 +604,9 @@
 pkg.torch.onnx.class_hierarchy3['model.BraggNN', 'model.NLB', 'aten.view.default']Jñ
 pkg.torch.onnx.fx_node|%view_3 : [num_users=1] = call_function[target=torch.ops.aten.view.default](args = (%permute_2, [1, 32, 9, 9]), kwargs = {})J3
 pkg.torch.onnx.name_scopes['', 'nlb', 'view_3']Jí
-pkg.torch.onnx.stack_traceÛFile "/home/hoku/repo/BraggNN/model.py", line 72, in forward
+pkg.torch.onnx.stack_traceÛFile "/home/hoku/repo/BraggNN/model.py", line 76, in forward
     _out = self.nlb(_out)
-  File "/home/hoku/repo/BraggNN/model.py", line 31, in forward
+  File "/home/hoku/repo/BraggNN/model.py", line 33, in forward
     theta_phi_g = torch.matmul(theta_phi, g).permute(0, 2, 1).view(mbsz, self.inter_ch, h, w)
 Õ
 view_3
@@ -627,9 +627,9 @@
 pkg.torch.onnx.class_hierarchy´['torch.export._trace._non_strict_export.<locals>._tuplify_outputs.<locals>._aot_export_non_strict.<locals>.Wrapper', 'quantized_decomposed.dequantize_per_tensor.default']J˙
 pkg.torch.onnx.fx_nodeﬂ%dequantize_per_tensor_25 : [num_users=1] = call_function[target=torch.ops.quantized_decomposed.dequantize_per_tensor.default](args = (%quantize_per_tensor_10, 0.0008638603030703962, 14, -128, 127, torch.int8), kwargs = {})J>
 pkg.torch.onnx.name_scopes ['', 'dequantize_per_tensor_25']Jç
-pkg.torch.onnx.stack_traceÓFile "/home/hoku/repo/BraggNN/model.py", line 72, in forward
+pkg.torch.onnx.stack_traceÓFile "/home/hoku/repo/BraggNN/model.py", line 76, in forward
     _out = self.nlb(_out)
-  File "/home/hoku/repo/BraggNN/model.py", line 33, in forward
+  File "/home/hoku/repo/BraggNN/model.py", line 35, in forward
     _out_tmp = self.out_cnn(theta_phi_g)
   File "/home/hoku/repo/BraggNN/.venv/lib/python3.12/site-packages/torch/nn/modules/conv.py", line 548, in forward
     return self._conv_forward(input, self.weight, self.bias)
@@ -646,9 +646,9 @@
 pkg.torch.onnx.class_hierarchyU['model.BraggNN', 'model.NLB', 'torch.nn.modules.conv.Conv2d', 'aten.conv2d.default']J 
 pkg.torch.onnx.fx_nodeØ%conv2d_4 : [num_users=1] = call_function[target=torch.ops.aten.conv2d.default](args = (%dequantize_per_tensor_25, %dequantize_per_tensor_3, %p_nlb_out_cnn_bias), kwargs = {})JD
 pkg.torch.onnx.name_scopes&['', 'nlb', 'nlb.out_cnn', 'conv2d_4']Jç
-pkg.torch.onnx.stack_traceÓFile "/home/hoku/repo/BraggNN/model.py", line 72, in forward
+pkg.torch.onnx.stack_traceÓFile "/home/hoku/repo/BraggNN/model.py", line 76, in forward
     _out = self.nlb(_out)
-  File "/home/hoku/repo/BraggNN/model.py", line 33, in forward
+  File "/home/hoku/repo/BraggNN/model.py", line 35, in forward
     _out_tmp = self.out_cnn(theta_phi_g)
   File "/home/hoku/repo/BraggNN/.venv/lib/python3.12/site-packages/torch/nn/modules/conv.py", line 548, in forward
     return self._conv_forward(input, self.weight, self.bias)
@@ -661,9 +661,9 @@
 pkg.torch.onnx.class_hierarchy©['torch.export._trace._non_strict_export.<locals>._tuplify_outputs.<locals>._aot_export_non_strict.<locals>.Wrapper', 'quantized_decomposed.quantize_per_tensor.default']JË
 pkg.torch.onnx.fx_nodeÕ%quantize_per_tensor_11 : [num_users=1] = call_function[target=torch.ops.quantized_decomposed.quantize_per_tensor.default](args = (%conv2d_4, 0.0012324920389801264, 14, -128, 127, torch.int8), kwargs = {})J<
 pkg.torch.onnx.name_scopes['', 'quantize_per_tensor_11']Jç
-pkg.torch.onnx.stack_traceÓFile "/home/hoku/repo/BraggNN/model.py", line 72, in forward
+pkg.torch.onnx.stack_traceÓFile "/home/hoku/repo/BraggNN/model.py", line 76, in forward
     _out = self.nlb(_out)
-  File "/home/hoku/repo/BraggNN/model.py", line 33, in forward
+  File "/home/hoku/repo/BraggNN/model.py", line 35, in forward
     _out_tmp = self.out_cnn(theta_phi_g)
   File "/home/hoku/repo/BraggNN/.venv/lib/python3.12/site-packages/torch/nn/modules/conv.py", line 548, in forward
     return self._conv_forward(input, self.weight, self.bias)
@@ -676,9 +676,9 @@
 pkg.torch.onnx.class_hierarchy´['torch.export._trace._non_strict_export.<locals>._tuplify_outputs.<locals>._aot_export_non_strict.<locals>.Wrapper', 'quantized_decomposed.dequantize_per_tensor.default']J˙
 pkg.torch.onnx.fx_nodeﬂ%dequantize_per_tensor_26 : [num_users=1] = call_function[target=torch.ops.quantized_decomposed.dequantize_per_tensor.default](args = (%quantize_per_tensor_11, 0.0012324920389801264, 14, -128, 127, torch.int8), kwargs = {})J>
 pkg.torch.onnx.name_scopes ['', 'dequantize_per_tensor_26']J⁄
-pkg.torch.onnx.stack_traceªFile "/home/hoku/repo/BraggNN/model.py", line 72, in forward
+pkg.torch.onnx.stack_traceªFile "/home/hoku/repo/BraggNN/model.py", line 76, in forward
     _out = self.nlb(_out)
-  File "/home/hoku/repo/BraggNN/model.py", line 34, in forward
+  File "/home/hoku/repo/BraggNN/model.py", line 36, in forward
     _out_tmp = torch.add(_out_tmp, x)
 ≤
 dequantize_per_tensor_26
@@ -687,9 +687,9 @@
 pkg.torch.onnx.class_hierarchy1['model.BraggNN', 'model.NLB', 'aten.add.Tensor']J±
 pkg.torch.onnx.fx_nodeñ%add_141 : [num_users=1] = call_function[target=torch.ops.aten.add.Tensor](args = (%dequantize_per_tensor_26, %dequantize_per_tensor_13), kwargs = {})J4
 pkg.torch.onnx.name_scopes['', 'nlb', 'add_141']J⁄
-pkg.torch.onnx.stack_traceªFile "/home/hoku/repo/BraggNN/model.py", line 72, in forward
+pkg.torch.onnx.stack_traceªFile "/home/hoku/repo/BraggNN/model.py", line 76, in forward
     _out = self.nlb(_out)
-  File "/home/hoku/repo/BraggNN/model.py", line 34, in forward
+  File "/home/hoku/repo/BraggNN/model.py", line 36, in forward
     _out_tmp = torch.add(_out_tmp, x)
 ã
 add_141
@@ -700,9 +700,9 @@
 pkg.torch.onnx.class_hierarchy©['torch.export._trace._non_strict_export.<locals>._tuplify_outputs.<locals>._aot_export_non_strict.<locals>.Wrapper', 'quantized_decomposed.quantize_per_tensor.default']JÊ
 pkg.torch.onnx.fx_nodeÀ%quantize_per_tensor_12 : [num_users=1] = call_function[target=torch.ops.quantized_decomposed.quantize_per_tensor.default](args = (%add_141, 0.005368834361433983, 80, -128, 127, torch.int8), kwargs = {})J<
 pkg.torch.onnx.name_scopes['', 'quantize_per_tensor_12']J⁄
-pkg.torch.onnx.stack_traceªFile "/home/hoku/repo/BraggNN/model.py", line 72, in forward
+pkg.torch.onnx.stack_traceªFile "/home/hoku/repo/BraggNN/model.py", line 76, in forward
     _out = self.nlb(_out)
-  File "/home/hoku/repo/BraggNN/model.py", line 34, in forward
+  File "/home/hoku/repo/BraggNN/model.py", line 36, in forward
     _out_tmp = torch.add(_out_tmp, x)
 ˛
 quantize_per_tensor_12
@@ -723,7 +723,7 @@ leaky_relunode_leaky_relu"	LeakyRelu*
 pkg.torch.onnx.class_hierarchyU['model.BraggNN', 'torch.nn.modules.activation.LeakyReLU', 'aten.leaky_relu.default']J¢
 pkg.torch.onnx.fx_nodeá%leaky_relu : [num_users=1] = call_function[target=torch.ops.aten.leaky_relu.default](args = (%dequantize_per_tensor_27,), kwargs = {})J@
 pkg.torch.onnx.name_scopes"['', 'cnn_layers.1', 'leaky_relu']J≠
-pkg.torch.onnx.stack_traceéFile "/home/hoku/repo/BraggNN/model.py", line 75, in forward
+pkg.torch.onnx.stack_traceéFile "/home/hoku/repo/BraggNN/model.py", line 79, in forward
     _out = layer(_out)
   File "/home/hoku/repo/BraggNN/.venv/lib/python3.12/site-packages/torch/nn/modules/activation.py", line 922, in forward
     return F.leaky_relu(input, self.negative_slope, self.inplace)
@@ -747,7 +747,7 @@ leaky_relu
 pkg.torch.onnx.class_hierarchy´['torch.export._trace._non_strict_export.<locals>._tuplify_outputs.<locals>._aot_export_non_strict.<locals>.Wrapper', 'quantized_decomposed.dequantize_per_tensor.default']J˚
 pkg.torch.onnx.fx_node‡%dequantize_per_tensor_28 : [num_users=1] = call_function[target=torch.ops.quantized_decomposed.dequantize_per_tensor.default](args = (%quantize_per_tensor_13, 0.000965262996032834, -112, -128, 127, torch.int8), kwargs = {})J>
 pkg.torch.onnx.name_scopes ['', 'dequantize_per_tensor_28']J¢
-pkg.torch.onnx.stack_traceÉFile "/home/hoku/repo/BraggNN/model.py", line 75, in forward
+pkg.torch.onnx.stack_traceÉFile "/home/hoku/repo/BraggNN/model.py", line 79, in forward
     _out = layer(_out)
   File "/home/hoku/repo/BraggNN/.venv/lib/python3.12/site-packages/torch/nn/modules/conv.py", line 548, in forward
     return self._conv_forward(input, self.weight, self.bias)
@@ -764,7 +764,7 @@ leaky_relu
 pkg.torch.onnx.class_hierarchyH['model.BraggNN', 'torch.nn.modules.conv.Conv2d', 'aten.conv2d.default']JÀ
 pkg.torch.onnx.fx_node∞%conv2d_5 : [num_users=1] = call_function[target=torch.ops.aten.conv2d.default](args = (%dequantize_per_tensor_28, %dequantize_per_tensor_5, %p_cnn_layers_2_bias), kwargs = {})J>
 pkg.torch.onnx.name_scopes ['', 'cnn_layers.2', 'conv2d_5']J¢
-pkg.torch.onnx.stack_traceÉFile "/home/hoku/repo/BraggNN/model.py", line 75, in forward
+pkg.torch.onnx.stack_traceÉFile "/home/hoku/repo/BraggNN/model.py", line 79, in forward
     _out = layer(_out)
   File "/home/hoku/repo/BraggNN/.venv/lib/python3.12/site-packages/torch/nn/modules/conv.py", line 548, in forward
     return self._conv_forward(input, self.weight, self.bias)
@@ -777,7 +777,7 @@ leaky_relu
 pkg.torch.onnx.class_hierarchy©['torch.export._trace._non_strict_export.<locals>._tuplify_outputs.<locals>._aot_export_non_strict.<locals>.Wrapper', 'quantized_decomposed.quantize_per_tensor.default']JÁ
 pkg.torch.onnx.fx_nodeÃ%quantize_per_tensor_14 : [num_users=1] = call_function[target=torch.ops.quantized_decomposed.quantize_per_tensor.default](args = (%conv2d_5, 0.004149565007537603, 60, -128, 127, torch.int8), kwargs = {})J<
 pkg.torch.onnx.name_scopes['', 'quantize_per_tensor_14']J¢
-pkg.torch.onnx.stack_traceÉFile "/home/hoku/repo/BraggNN/model.py", line 75, in forward
+pkg.torch.onnx.stack_traceÉFile "/home/hoku/repo/BraggNN/model.py", line 79, in forward
     _out = layer(_out)
   File "/home/hoku/repo/BraggNN/.venv/lib/python3.12/site-packages/torch/nn/modules/conv.py", line 548, in forward
     return self._conv_forward(input, self.weight, self.bias)
@@ -799,7 +799,7 @@ leaky_relu
 pkg.torch.onnx.class_hierarchyU['model.BraggNN', 'torch.nn.modules.activation.LeakyReLU', 'aten.leaky_relu.default']J§
 pkg.torch.onnx.fx_nodeâ%leaky_relu_1 : [num_users=1] = call_function[target=torch.ops.aten.leaky_relu.default](args = (%dequantize_per_tensor_29,), kwargs = {})JB
 pkg.torch.onnx.name_scopes$['', 'cnn_layers.3', 'leaky_relu_1']J≠
-pkg.torch.onnx.stack_traceéFile "/home/hoku/repo/BraggNN/model.py", line 75, in forward
+pkg.torch.onnx.stack_traceéFile "/home/hoku/repo/BraggNN/model.py", line 79, in forward
     _out = layer(_out)
   File "/home/hoku/repo/BraggNN/.venv/lib/python3.12/site-packages/torch/nn/modules/activation.py", line 922, in forward
     return F.leaky_relu(input, self.negative_slope, self.inplace)
@@ -822,7 +822,7 @@ leaky_relu
 pkg.torch.onnx.class_hierarchy´['torch.export._trace._non_strict_export.<locals>._tuplify_outputs.<locals>._aot_export_non_strict.<locals>.Wrapper', 'quantized_decomposed.dequantize_per_tensor.default']J¸
 pkg.torch.onnx.fx_node·%dequantize_per_tensor_30 : [num_users=1] = call_function[target=torch.ops.quantized_decomposed.dequantize_per_tensor.default](args = (%quantize_per_tensor_15, 0.0011062275152653456, -119, -128, 127, torch.int8), kwargs = {})J>
 pkg.torch.onnx.name_scopes ['', 'dequantize_per_tensor_30']J¢
-pkg.torch.onnx.stack_traceÉFile "/home/hoku/repo/BraggNN/model.py", line 75, in forward
+pkg.torch.onnx.stack_traceÉFile "/home/hoku/repo/BraggNN/model.py", line 79, in forward
     _out = layer(_out)
   File "/home/hoku/repo/BraggNN/.venv/lib/python3.12/site-packages/torch/nn/modules/conv.py", line 548, in forward
     return self._conv_forward(input, self.weight, self.bias)
@@ -839,7 +839,7 @@ leaky_relu
 pkg.torch.onnx.class_hierarchyH['model.BraggNN', 'torch.nn.modules.conv.Conv2d', 'aten.conv2d.default']JÀ
 pkg.torch.onnx.fx_node∞%conv2d_6 : [num_users=1] = call_function[target=torch.ops.aten.conv2d.default](args = (%dequantize_per_tensor_30, %dequantize_per_tensor_6, %p_cnn_layers_4_bias), kwargs = {})J>
 pkg.torch.onnx.name_scopes ['', 'cnn_layers.4', 'conv2d_6']J¢
-pkg.torch.onnx.stack_traceÉFile "/home/hoku/repo/BraggNN/model.py", line 75, in forward
+pkg.torch.onnx.stack_traceÉFile "/home/hoku/repo/BraggNN/model.py", line 79, in forward
     _out = layer(_out)
   File "/home/hoku/repo/BraggNN/.venv/lib/python3.12/site-packages/torch/nn/modules/conv.py", line 548, in forward
     return self._conv_forward(input, self.weight, self.bias)
@@ -852,7 +852,7 @@ leaky_relu
 pkg.torch.onnx.class_hierarchy©['torch.export._trace._non_strict_export.<locals>._tuplify_outputs.<locals>._aot_export_non_strict.<locals>.Wrapper', 'quantized_decomposed.quantize_per_tensor.default']JË
 pkg.torch.onnx.fx_nodeÕ%quantize_per_tensor_16 : [num_users=1] = call_function[target=torch.ops.quantized_decomposed.quantize_per_tensor.default](args = (%conv2d_6, 0.0028117194306105375, 19, -128, 127, torch.int8), kwargs = {})J<
 pkg.torch.onnx.name_scopes['', 'quantize_per_tensor_16']J¢
-pkg.torch.onnx.stack_traceÉFile "/home/hoku/repo/BraggNN/model.py", line 75, in forward
+pkg.torch.onnx.stack_traceÉFile "/home/hoku/repo/BraggNN/model.py", line 79, in forward
     _out = layer(_out)
   File "/home/hoku/repo/BraggNN/.venv/lib/python3.12/site-packages/torch/nn/modules/conv.py", line 548, in forward
     return self._conv_forward(input, self.weight, self.bias)
@@ -874,7 +874,7 @@ leaky_relu
 pkg.torch.onnx.class_hierarchyU['model.BraggNN', 'torch.nn.modules.activation.LeakyReLU', 'aten.leaky_relu.default']J§
 pkg.torch.onnx.fx_nodeâ%leaky_relu_2 : [num_users=1] = call_function[target=torch.ops.aten.leaky_relu.default](args = (%dequantize_per_tensor_31,), kwargs = {})JB
 pkg.torch.onnx.name_scopes$['', 'cnn_layers.5', 'leaky_relu_2']J≠
-pkg.torch.onnx.stack_traceéFile "/home/hoku/repo/BraggNN/model.py", line 75, in forward
+pkg.torch.onnx.stack_traceéFile "/home/hoku/repo/BraggNN/model.py", line 79, in forward
     _out = layer(_out)
   File "/home/hoku/repo/BraggNN/.venv/lib/python3.12/site-packages/torch/nn/modules/activation.py", line 922, in forward
     return F.leaky_relu(input, self.negative_slope, self.inplace)
@@ -886,7 +886,7 @@ leaky_relu
 pkg.torch.onnx.class_hierarchy.['model.BraggNN', 'aten._unsafe_view.default']Jú
 pkg.torch.onnx.fx_nodeÅ%_unsafe_view : [num_users=1] = call_function[target=torch.ops.aten._unsafe_view.default](args = (%clone, [1, 200]), kwargs = {})J2
 pkg.torch.onnx.name_scopes['', '_unsafe_view']J
-pkg.torch.onnx.stack_traceaFile "/home/hoku/repo/BraggNN/model.py", line 77, in forward
+pkg.torch.onnx.stack_traceaFile "/home/hoku/repo/BraggNN/model.py", line 81, in forward
     _out = _out.flatten(start_dim=1)
 €
 _unsafe_view
@@ -907,7 +907,7 @@ leaky_relu
 pkg.torch.onnx.class_hierarchy´['torch.export._trace._non_strict_export.<locals>._tuplify_outputs.<locals>._aot_export_non_strict.<locals>.Wrapper', 'quantized_decomposed.dequantize_per_tensor.default']J¸
 pkg.torch.onnx.fx_node·%dequantize_per_tensor_32 : [num_users=1] = call_function[target=torch.ops.quantized_decomposed.dequantize_per_tensor.default](args = (%quantize_per_tensor_17, 0.0012075146660208702, -124, -128, 127, torch.int8), kwargs = {})J>
 pkg.torch.onnx.name_scopes ['', 'dequantize_per_tensor_32']Jö
-pkg.torch.onnx.stack_trace˚File "/home/hoku/repo/BraggNN/model.py", line 79, in forward
+pkg.torch.onnx.stack_trace˚File "/home/hoku/repo/BraggNN/model.py", line 83, in forward
     _out = layer(_out)
   File "/home/hoku/repo/BraggNN/.venv/lib/python3.12/site-packages/torch/nn/modules/linear.py", line 134, in forward
     return F.linear(input, self.weight, self.bias)
@@ -923,7 +923,7 @@ leaky_relu
 pkg.torch.onnx.class_hierarchyJ['model.BraggNN', 'torch.nn.modules.linear.Linear', 'aten.linear.default']JÀ
 pkg.torch.onnx.fx_node∞%linear : [num_users=1] = call_function[target=torch.ops.aten.linear.default](args = (%dequantize_per_tensor_32, %dequantize_per_tensor_7, %p_dense_layers_0_bias), kwargs = {})J>
 pkg.torch.onnx.name_scopes ['', 'dense_layers.0', 'linear']Jö
-pkg.torch.onnx.stack_trace˚File "/home/hoku/repo/BraggNN/model.py", line 79, in forward
+pkg.torch.onnx.stack_trace˚File "/home/hoku/repo/BraggNN/model.py", line 83, in forward
     _out = layer(_out)
   File "/home/hoku/repo/BraggNN/.venv/lib/python3.12/site-packages/torch/nn/modules/linear.py", line 134, in forward
     return F.linear(input, self.weight, self.bias)
@@ -936,7 +936,7 @@ leaky_relu
 pkg.torch.onnx.class_hierarchy©['torch.export._trace._non_strict_export.<locals>._tuplify_outputs.<locals>._aot_export_non_strict.<locals>.Wrapper', 'quantized_decomposed.quantize_per_tensor.default']JÊ
 pkg.torch.onnx.fx_nodeÀ%quantize_per_tensor_18 : [num_users=1] = call_function[target=torch.ops.quantized_decomposed.quantize_per_tensor.default](args = (%linear, 0.005182142835110426, -56, -128, 127, torch.int8), kwargs = {})J<
 pkg.torch.onnx.name_scopes['', 'quantize_per_tensor_18']Jö
-pkg.torch.onnx.stack_trace˚File "/home/hoku/repo/BraggNN/model.py", line 79, in forward
+pkg.torch.onnx.stack_trace˚File "/home/hoku/repo/BraggNN/model.py", line 83, in forward
     _out = layer(_out)
   File "/home/hoku/repo/BraggNN/.venv/lib/python3.12/site-packages/torch/nn/modules/linear.py", line 134, in forward
     return F.linear(input, self.weight, self.bias)
@@ -958,7 +958,7 @@ leaky_relu
 pkg.torch.onnx.class_hierarchyU['model.BraggNN', 'torch.nn.modules.activation.LeakyReLU', 'aten.leaky_relu.default']J§
 pkg.torch.onnx.fx_nodeâ%leaky_relu_3 : [num_users=1] = call_function[target=torch.ops.aten.leaky_relu.default](args = (%dequantize_per_tensor_33,), kwargs = {})JD
 pkg.torch.onnx.name_scopes&['', 'dense_layers.1', 'leaky_relu_3']J≠
-pkg.torch.onnx.stack_traceéFile "/home/hoku/repo/BraggNN/model.py", line 79, in forward
+pkg.torch.onnx.stack_traceéFile "/home/hoku/repo/BraggNN/model.py", line 83, in forward
     _out = layer(_out)
   File "/home/hoku/repo/BraggNN/.venv/lib/python3.12/site-packages/torch/nn/modules/activation.py", line 922, in forward
     return F.leaky_relu(input, self.negative_slope, self.inplace)
@@ -981,7 +981,7 @@ leaky_relu
 pkg.torch.onnx.class_hierarchy´['torch.export._trace._non_strict_export.<locals>._tuplify_outputs.<locals>._aot_export_non_strict.<locals>.Wrapper', 'quantized_decomposed.dequantize_per_tensor.default']J˚
 pkg.torch.onnx.fx_node‡%dequantize_per_tensor_34 : [num_users=1] = call_function[target=torch.ops.quantized_decomposed.dequantize_per_tensor.default](args = (%quantize_per_tensor_19, 0.003730529686436057, -127, -128, 127, torch.int8), kwargs = {})J>
 pkg.torch.onnx.name_scopes ['', 'dequantize_per_tensor_34']Jö
-pkg.torch.onnx.stack_trace˚File "/home/hoku/repo/BraggNN/model.py", line 79, in forward
+pkg.torch.onnx.stack_trace˚File "/home/hoku/repo/BraggNN/model.py", line 83, in forward
     _out = layer(_out)
   File "/home/hoku/repo/BraggNN/.venv/lib/python3.12/site-packages/torch/nn/modules/linear.py", line 134, in forward
     return F.linear(input, self.weight, self.bias)
@@ -997,7 +997,7 @@ leaky_relu
 pkg.torch.onnx.class_hierarchyJ['model.BraggNN', 'torch.nn.modules.linear.Linear', 'aten.linear.default']JÕ
 pkg.torch.onnx.fx_node≤%linear_1 : [num_users=1] = call_function[target=torch.ops.aten.linear.default](args = (%dequantize_per_tensor_34, %dequantize_per_tensor_8, %p_dense_layers_2_bias), kwargs = {})J@
 pkg.torch.onnx.name_scopes"['', 'dense_layers.2', 'linear_1']Jö
-pkg.torch.onnx.stack_trace˚File "/home/hoku/repo/BraggNN/model.py", line 79, in forward
+pkg.torch.onnx.stack_trace˚File "/home/hoku/repo/BraggNN/model.py", line 83, in forward
     _out = layer(_out)
   File "/home/hoku/repo/BraggNN/.venv/lib/python3.12/site-packages/torch/nn/modules/linear.py", line 134, in forward
     return F.linear(input, self.weight, self.bias)
@@ -1010,7 +1010,7 @@ leaky_relu
 pkg.torch.onnx.class_hierarchy©['torch.export._trace._non_strict_export.<locals>._tuplify_outputs.<locals>._aot_export_non_strict.<locals>.Wrapper', 'quantized_decomposed.quantize_per_tensor.default']JË
 pkg.torch.onnx.fx_nodeÕ%quantize_per_tensor_20 : [num_users=1] = call_function[target=torch.ops.quantized_decomposed.quantize_per_tensor.default](args = (%linear_1, 0.008570644073188305, -26, -128, 127, torch.int8), kwargs = {})J<
 pkg.torch.onnx.name_scopes['', 'quantize_per_tensor_20']Jö
-pkg.torch.onnx.stack_trace˚File "/home/hoku/repo/BraggNN/model.py", line 79, in forward
+pkg.torch.onnx.stack_trace˚File "/home/hoku/repo/BraggNN/model.py", line 83, in forward
     _out = layer(_out)
   File "/home/hoku/repo/BraggNN/.venv/lib/python3.12/site-packages/torch/nn/modules/linear.py", line 134, in forward
     return F.linear(input, self.weight, self.bias)
@@ -1032,7 +1032,7 @@ leaky_relu
 pkg.torch.onnx.class_hierarchyU['model.BraggNN', 'torch.nn.modules.activation.LeakyReLU', 'aten.leaky_relu.default']J§
 pkg.torch.onnx.fx_nodeâ%leaky_relu_4 : [num_users=1] = call_function[target=torch.ops.aten.leaky_relu.default](args = (%dequantize_per_tensor_35,), kwargs = {})JD
 pkg.torch.onnx.name_scopes&['', 'dense_layers.3', 'leaky_relu_4']J≠
-pkg.torch.onnx.stack_traceéFile "/home/hoku/repo/BraggNN/model.py", line 79, in forward
+pkg.torch.onnx.stack_traceéFile "/home/hoku/repo/BraggNN/model.py", line 83, in forward
     _out = layer(_out)
   File "/home/hoku/repo/BraggNN/.venv/lib/python3.12/site-packages/torch/nn/modules/activation.py", line 922, in forward
     return F.leaky_relu(input, self.negative_slope, self.inplace)
@@ -1055,7 +1055,7 @@ leaky_relu
 pkg.torch.onnx.class_hierarchy´['torch.export._trace._non_strict_export.<locals>._tuplify_outputs.<locals>._aot_export_non_strict.<locals>.Wrapper', 'quantized_decomposed.dequantize_per_tensor.default']J¸
 pkg.torch.onnx.fx_node·%dequantize_per_tensor_36 : [num_users=1] = call_function[target=torch.ops.quantized_decomposed.dequantize_per_tensor.default](args = (%quantize_per_tensor_21, 0.0051134442910552025, -126, -128, 127, torch.int8), kwargs = {})J>
 pkg.torch.onnx.name_scopes ['', 'dequantize_per_tensor_36']Jö
-pkg.torch.onnx.stack_trace˚File "/home/hoku/repo/BraggNN/model.py", line 79, in forward
+pkg.torch.onnx.stack_trace˚File "/home/hoku/repo/BraggNN/model.py", line 83, in forward
     _out = layer(_out)
   File "/home/hoku/repo/BraggNN/.venv/lib/python3.12/site-packages/torch/nn/modules/linear.py", line 134, in forward
     return F.linear(input, self.weight, self.bias)
@@ -1071,7 +1071,7 @@ leaky_relu
 pkg.torch.onnx.class_hierarchyJ['model.BraggNN', 'torch.nn.modules.linear.Linear', 'aten.linear.default']JÕ
 pkg.torch.onnx.fx_node≤%linear_2 : [num_users=1] = call_function[target=torch.ops.aten.linear.default](args = (%dequantize_per_tensor_36, %dequantize_per_tensor_9, %p_dense_layers_4_bias), kwargs = {})J@
 pkg.torch.onnx.name_scopes"['', 'dense_layers.4', 'linear_2']Jö
-pkg.torch.onnx.stack_trace˚File "/home/hoku/repo/BraggNN/model.py", line 79, in forward
+pkg.torch.onnx.stack_trace˚File "/home/hoku/repo/BraggNN/model.py", line 83, in forward
     _out = layer(_out)
   File "/home/hoku/repo/BraggNN/.venv/lib/python3.12/site-packages/torch/nn/modules/linear.py", line 134, in forward
     return F.linear(input, self.weight, self.bias)
@@ -1084,7 +1084,7 @@ leaky_relu
 pkg.torch.onnx.class_hierarchy©['torch.export._trace._non_strict_export.<locals>._tuplify_outputs.<locals>._aot_export_non_strict.<locals>.Wrapper', 'quantized_decomposed.quantize_per_tensor.default']JÈ
 pkg.torch.onnx.fx_nodeŒ%quantize_per_tensor_22 : [num_users=1] = call_function[target=torch.ops.quantized_decomposed.quantize_per_tensor.default](args = (%linear_2, 0.004878426436334848, -128, -128, 127, torch.int8), kwargs = {})J<
 pkg.torch.onnx.name_scopes['', 'quantize_per_tensor_22']Jö
-pkg.torch.onnx.stack_trace˚File "/home/hoku/repo/BraggNN/model.py", line 79, in forward
+pkg.torch.onnx.stack_trace˚File "/home/hoku/repo/BraggNN/model.py", line 83, in forward
     _out = layer(_out)
   File "/home/hoku/repo/BraggNN/.venv/lib/python3.12/site-packages/torch/nn/modules/linear.py", line 134, in forward
     return F.linear(input, self.weight, self.bias)
@@ -1106,7 +1106,7 @@ leaky_relu
 pkg.torch.onnx.class_hierarchyU['model.BraggNN', 'torch.nn.modules.activation.LeakyReLU', 'aten.leaky_relu.default']J§
 pkg.torch.onnx.fx_nodeâ%leaky_relu_5 : [num_users=1] = call_function[target=torch.ops.aten.leaky_relu.default](args = (%dequantize_per_tensor_37,), kwargs = {})JD
 pkg.torch.onnx.name_scopes&['', 'dense_layers.5', 'leaky_relu_5']J≠
-pkg.torch.onnx.stack_traceéFile "/home/hoku/repo/BraggNN/model.py", line 79, in forward
+pkg.torch.onnx.stack_traceéFile "/home/hoku/repo/BraggNN/model.py", line 83, in forward
     _out = layer(_out)
   File "/home/hoku/repo/BraggNN/.venv/lib/python3.12/site-packages/torch/nn/modules/activation.py", line 922, in forward
     return F.leaky_relu(input, self.negative_slope, self.inplace)
@@ -1129,7 +1129,7 @@ leaky_relu
 pkg.torch.onnx.class_hierarchy´['torch.export._trace._non_strict_export.<locals>._tuplify_outputs.<locals>._aot_export_non_strict.<locals>.Wrapper', 'quantized_decomposed.dequantize_per_tensor.default']J˚
 pkg.torch.onnx.fx_node‡%dequantize_per_tensor_38 : [num_users=1] = call_function[target=torch.ops.quantized_decomposed.dequantize_per_tensor.default](args = (%quantize_per_tensor_23, 0.004878426436334848, -128, -128, 127, torch.int8), kwargs = {})J>
 pkg.torch.onnx.name_scopes ['', 'dequantize_per_tensor_38']Jö
-pkg.torch.onnx.stack_trace˚File "/home/hoku/repo/BraggNN/model.py", line 79, in forward
+pkg.torch.onnx.stack_trace˚File "/home/hoku/repo/BraggNN/model.py", line 83, in forward
     _out = layer(_out)
   File "/home/hoku/repo/BraggNN/.venv/lib/python3.12/site-packages/torch/nn/modules/linear.py", line 134, in forward
     return F.linear(input, self.weight, self.bias)
@@ -1145,7 +1145,7 @@ leaky_relu
 pkg.torch.onnx.class_hierarchyJ['model.BraggNN', 'torch.nn.modules.linear.Linear', 'aten.linear.default']JŒ
 pkg.torch.onnx.fx_node≥%linear_3 : [num_users=1] = call_function[target=torch.ops.aten.linear.default](args = (%dequantize_per_tensor_38, %dequantize_per_tensor_10, %p_dense_layers_6_bias), kwargs = {})J@
 pkg.torch.onnx.name_scopes"['', 'dense_layers.6', 'linear_3']Jö
-pkg.torch.onnx.stack_trace˚File "/home/hoku/repo/BraggNN/model.py", line 79, in forward
+pkg.torch.onnx.stack_trace˚File "/home/hoku/repo/BraggNN/model.py", line 83, in forward
     _out = layer(_out)
   File "/home/hoku/repo/BraggNN/.venv/lib/python3.12/site-packages/torch/nn/modules/linear.py", line 134, in forward
     return F.linear(input, self.weight, self.bias)
@@ -1158,7 +1158,7 @@ leaky_relu
 pkg.torch.onnx.class_hierarchy©['torch.export._trace._non_strict_export.<locals>._tuplify_outputs.<locals>._aot_export_non_strict.<locals>.Wrapper', 'quantized_decomposed.quantize_per_tensor.default']JÍ
 pkg.torch.onnx.fx_nodeœ%quantize_per_tensor_24 : [num_users=1] = call_function[target=torch.ops.quantized_decomposed.quantize_per_tensor.default](args = (%linear_3, 0.0037989222910255194, -128, -128, 127, torch.int8), kwargs = {})J<
 pkg.torch.onnx.name_scopes['', 'quantize_per_tensor_24']Jö
-pkg.torch.onnx.stack_trace˚File "/home/hoku/repo/BraggNN/model.py", line 79, in forward
+pkg.torch.onnx.stack_trace˚File "/home/hoku/repo/BraggNN/model.py", line 83, in forward
     _out = layer(_out)
   File "/home/hoku/repo/BraggNN/.venv/lib/python3.12/site-packages/torch/nn/modules/linear.py", line 134, in forward
     return F.linear(input, self.weight, self.bias)
@@ -1180,7 +1180,7 @@ leaky_relu
 pkg.torch.onnx.class_hierarchyU['model.BraggNN', 'torch.nn.modules.activation.LeakyReLU', 'aten.leaky_relu.default']J§
 pkg.torch.onnx.fx_nodeâ%leaky_relu_6 : [num_users=1] = call_function[target=torch.ops.aten.leaky_relu.default](args = (%dequantize_per_tensor_39,), kwargs = {})JD
 pkg.torch.onnx.name_scopes&['', 'dense_layers.7', 'leaky_relu_6']J≠
-pkg.torch.onnx.stack_traceéFile "/home/hoku/repo/BraggNN/model.py", line 79, in forward
+pkg.torch.onnx.stack_traceéFile "/home/hoku/repo/BraggNN/model.py", line 83, in forward
     _out = layer(_out)
   File "/home/hoku/repo/BraggNN/.venv/lib/python3.12/site-packages/torch/nn/modules/activation.py", line 922, in forward
     return F.leaky_relu(input, self.negative_slope, self.inplace)
@@ -1203,7 +1203,7 @@ leaky_relu
 pkg.torch.onnx.class_hierarchy´['torch.export._trace._non_strict_export.<locals>._tuplify_outputs.<locals>._aot_export_non_strict.<locals>.Wrapper', 'quantized_decomposed.dequantize_per_tensor.default']J¸
 pkg.torch.onnx.fx_node·%dequantize_per_tensor_40 : [num_users=1] = call_function[target=torch.ops.quantized_decomposed.dequantize_per_tensor.default](args = (%quantize_per_tensor_25, 0.0037989222910255194, -128, -128, 127, torch.int8), kwargs = {})J>
 pkg.torch.onnx.name_scopes ['', 'dequantize_per_tensor_40']Jö
-pkg.torch.onnx.stack_trace˚File "/home/hoku/repo/BraggNN/model.py", line 79, in forward
+pkg.torch.onnx.stack_trace˚File "/home/hoku/repo/BraggNN/model.py", line 83, in forward
     _out = layer(_out)
   File "/home/hoku/repo/BraggNN/.venv/lib/python3.12/site-packages/torch/nn/modules/linear.py", line 134, in forward
     return F.linear(input, self.weight, self.bias)
@@ -1219,7 +1219,7 @@ leaky_relu
 pkg.torch.onnx.class_hierarchyJ['model.BraggNN', 'torch.nn.modules.linear.Linear', 'aten.linear.default']JŒ
 pkg.torch.onnx.fx_node≥%linear_4 : [num_users=1] = call_function[target=torch.ops.aten.linear.default](args = (%dequantize_per_tensor_40, %dequantize_per_tensor_11, %p_dense_layers_8_bias), kwargs = {})J@
 pkg.torch.onnx.name_scopes"['', 'dense_layers.8', 'linear_4']Jö
-pkg.torch.onnx.stack_trace˚File "/home/hoku/repo/BraggNN/model.py", line 79, in forward
+pkg.torch.onnx.stack_trace˚File "/home/hoku/repo/BraggNN/model.py", line 83, in forward
     _out = layer(_out)
   File "/home/hoku/repo/BraggNN/.venv/lib/python3.12/site-packages/torch/nn/modules/linear.py", line 134, in forward
     return F.linear(input, self.weight, self.bias)
@@ -1232,7 +1232,7 @@ leaky_relu
 pkg.torch.onnx.class_hierarchy©['torch.export._trace._non_strict_export.<locals>._tuplify_outputs.<locals>._aot_export_non_strict.<locals>.Wrapper', 'quantized_decomposed.quantize_per_tensor.default']JÈ
 pkg.torch.onnx.fx_nodeŒ%quantize_per_tensor_26 : [num_users=1] = call_function[target=torch.ops.quantized_decomposed.quantize_per_tensor.default](args = (%linear_4, 0.002369726775214076, -128, -128, 127, torch.int8), kwargs = {})J<
 pkg.torch.onnx.name_scopes['', 'quantize_per_tensor_26']Jö
-pkg.torch.onnx.stack_trace˚File "/home/hoku/repo/BraggNN/model.py", line 79, in forward
+pkg.torch.onnx.stack_trace˚File "/home/hoku/repo/BraggNN/model.py", line 83, in forward
     _out = layer(_out)
   File "/home/hoku/repo/BraggNN/.venv/lib/python3.12/site-packages/torch/nn/modules/linear.py", line 134, in forward
     return F.linear(input, self.weight, self.bias)

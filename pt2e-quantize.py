@@ -28,6 +28,9 @@ def main():
     ds_input = BraggNNDataset(psz=11, rnd_shift=0, use='validation')
     dl_input = DataLoader(dataset=ds_input, batch_size=512, shuffle=False, \
                           num_workers=8, prefetch_factor=512, drop_last=False, pin_memory=True)
+    # For torh 1.6.0
+    #dl_input = DataLoader(dataset=ds_input, batch_size=512, shuffle=False, \
+    #                      num_workers=8, drop_last=False, pin_memory=True)
     fp32_model = BraggNN(imgsz=11, fcsz=(16, 8, 4, 2)).eval()
     fp32_model.load_state_dict(torch.load('models/fc16_8_4_2-sz11.pth', map_location=torch.device('cpu')))
 
@@ -55,8 +58,7 @@ def main():
     example_inputs = (torch.from_numpy(make_gaussian()).unsqueeze(0).unsqueeze(0),)
     print("example_inputs: ", example_inputs)
     quantized_ep = torch.export.export(quantized_model, example_inputs)
-    torch.export.save(quantized_ep, "models/int8_16_8_4_2-sz11.pth")
-    #torch.save(quantized_model, "models/int8_16_8_4_2-sz11.pth")
+    torch.export.save(quantized_ep, "models/int8_16_8_4_2-sz11-opset12.pth")
 
 if __name__ == "__main__":
     main()

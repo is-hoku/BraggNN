@@ -25,7 +25,7 @@ def main():
         print("fp32: ", pred * 11)
 
     # int8
-    int8_model = torch.export.load('models/int8_16_8_4_2-sz11.pth').module()
+    int8_model = torch.export.load('models/int8_16_8_4_2-sz11-opset12.pth').module()
     #int8_model = torch.load(
     #    'models/int8_16_8_4_2-sz11.pth',
     #    map_location=torch.device('cpu'),

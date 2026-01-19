@@ -8,6 +8,8 @@ def model_init(m):
 class NLB(torch.nn.Module):
     def __init__(self, in_ch, relu_a=0.01):
         self.inter_ch = torch.div(in_ch, 2, rounding_mode='floor').item()
+        # For torch==1.6.0
+        #self.inter_ch = torch.floor_divide(in_ch, 2).item()
         super().__init__()
         self.theta_layer = torch.nn.Conv2d(in_channels=in_ch, out_channels=self.inter_ch, \
                             kernel_size=1, padding=0)
@@ -48,6 +50,7 @@ class BraggNN(torch.nn.Module):
                             torch.nn.Conv2d(in_channels=ic, out_channels=oc, kernel_size=3, \
                                 stride=1, padding=0),
                             torch.nn.LeakyReLU(negative_slope=0.01),
+                            #torch.nn.ReLU(),
             ]
             fsz -= 2
         self.nlb = NLB(in_ch=cnn_out_chs[0])
@@ -57,6 +60,7 @@ class BraggNN(torch.nn.Module):
             self.dense_ops += [
                             torch.nn.Linear(ic, oc),
                             torch.nn.LeakyReLU(negative_slope=0.01),
+                            #torch.nn.ReLU(),
             ]
         # output layer
         self.dense_ops += [torch.nn.Linear(fcsz[-1], 2), ]
