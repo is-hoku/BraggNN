@@ -50,8 +50,8 @@ class BraggNNCalibrationDataReader(CalibrationDataReader):
 
 def main():
     imgsz = 11
-    fp32_onnx_path = "onnx/braggnn_fp32_opset13.onnx"
-    int8_onnx_path = "onnx/braggnn_int8_qdq_opset13.onnx"
+    fp32_onnx_path = "onnx/braggnn_fp32_opset10.onnx"
+    int8_onnx_path = "onnx/braggnn_int8_qdq_opset10.onnx"
 
     # Load FP32 model
     print("Loading FP32 PyTorch model...")
@@ -61,7 +61,7 @@ def main():
     # Example input
     example_input = torch.from_numpy(make_gaussian(imgsz)[None, None])
 
-    # Export FP32 to ONNX opset 13
+    # Export FP32 to ONNX opset 10
     print(f"Exporting FP32 model to {fp32_onnx_path}...")
     torch.onnx.export(
         model,
@@ -70,7 +70,7 @@ def main():
         input_names=['input'],
         output_names=['output'],
         dynamic_axes={'input': {0: 'batch_size'}, 'output': {0: 'batch_size'}},
-        opset_version=13,
+        opset_version=10,
         export_params=True,
         do_constant_folding=True,
         dynamo=False,
@@ -98,6 +98,10 @@ def main():
         activation_type=QuantType.QInt8,
         #op_types_to_quantize=['Conv', 'MatMul', 'Gemm', 'Gather', 'Unsqueeze', 'Concat', 'Reshape', 'Transpose', 'Softmax', 'LeakyRelu', 'Add', 'Flatten'],
         op_types_to_quantize=['Conv', 'MatMul', 'Gather', 'Unsqueeze', 'Concat', 'Reshape', 'Transpose', 'LeakyRelu', 'Add', 'Flatten'],
+        extra_options={
+            'ActivationSymmetric': True,
+            'WeightSymmetric': True,
+        },
     )
     print("INT8 static quantization done.")
 
