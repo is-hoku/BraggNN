@@ -51,7 +51,7 @@ class BraggNNCalibrationDataReader(CalibrationDataReader):
 def main():
     imgsz = 11
     fp32_onnx_path = "onnx/braggnn_fp32_opset10.onnx"
-    int8_onnx_path = "onnx/braggnn_int8_qdq_opset10.onnx"
+    int8_onnx_path = "onnx/braggnn_int8_qlinear_opset10.onnx"
 
     # Load FP32 model
     print("Loading FP32 PyTorch model...")
@@ -84,7 +84,6 @@ def main():
     #onnx.save(model_onnx, fp32_onnx_path)
     #print("Shape inference done.")
 
-    # Static quantization with QLinearOps format
     print(f"Quantizing to {int8_onnx_path} with QLinearOps format...")
     calibration_reader = BraggNNCalibrationDataReader(imgsz=imgsz, num_samples=128)
 
@@ -92,8 +91,8 @@ def main():
         model_input=fp32_onnx_path,
         model_output=int8_onnx_path,
         calibration_data_reader=calibration_reader,
-        #quant_format=QuantFormat.QOperator,
-        quant_format=QuantFormat.QDQ,
+        quant_format=QuantFormat.QOperator,
+        #quant_format=QuantFormat.QDQ,
         weight_type=QuantType.QInt8,
         activation_type=QuantType.QInt8,
         #op_types_to_quantize=['Conv', 'MatMul', 'Gemm', 'Gather', 'Unsqueeze', 'Concat', 'Reshape', 'Transpose', 'Softmax', 'LeakyRelu', 'Add', 'Flatten'],
@@ -101,6 +100,7 @@ def main():
         extra_options={
             'ActivationSymmetric': True,
             'WeightSymmetric': True,
+            'ForceQuantizeNoInputCheck': True,
         },
     )
     print("INT8 static quantization done.")

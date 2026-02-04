@@ -118,7 +118,7 @@ def main():
         if args.save_int8:
             torch.save(model.state_dict(), args.save_int8)
 
-        int8_output_path = "onnx/braggnn_int8_opset12.onnx"
+        int8_output_path = "onnx/braggnn_int8_opset13_ptqfwd.onnx"
         example_input = make_gaussian(
             imgsz=args.imgsz,
             x_cen=args.x_cen, y_cen=args.y_cen,

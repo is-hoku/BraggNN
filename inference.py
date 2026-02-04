@@ -1,25 +1,60 @@
 import numpy as np
 import torch
+import torchao.quantization.pt2e
 from model import BraggNN
 
 def make_gaussian():
     X_test = np.zeros((11, 11))
-    x_cen, y_cen = 6.0, 5.0
+    x_cen, y_cen = 5.5, 5.5
 
-    sig_x, sig_y = 0.6, 1.5
+    sig_x, sig_y = 2.0, 2.0
     for x in range(11):
         for y in range(11):
             X_test[y][x] = 1000*(np.exp(-(x-x_cen)*(x-x_cen)/2*sig_x - (y-y_cen)*(y-y_cen)/2*sig_y))
-    
+
     X_test = (X_test - X_test.min()) / (X_test.max() - X_test.min())
     return torch.from_numpy(X_test[np.newaxis, np.newaxis].astype('float32'))
 
+def generate_dummy_input():
+    psz = 11  # BRAGGNN_PATCH_SIZE
+    input_data = np.zeros(psz * psz, dtype=np.float32)
+
+    center_x = 5.5
+    center_y = 5.5
+    sigma = 2.0
+
+    for i in range(psz):
+        for j in range(psz):
+            dx = float(j) - center_x
+            dy = float(i) - center_y
+            dist_sq = dx * dx + dy * dy
+            input_data[i * psz + j] = np.exp(-dist_sq / (2.0 * sigma * sigma))
+
+    # Add some noise
+    for i in range(psz * psz):
+        input_data[i] += (i % 7) / 70.0
+
+    # Normalize to [0, 1]
+    min_val = input_data.min()
+    max_val = input_data.max()
+
+    if max_val > min_val:
+        input_data = (input_data - min_val) / (max_val - min_val)
+
+    print("Generated dummy input data (11x11 patch with Gaussian-like peak)")
+
+    # Reshape to (1, 1, 11, 11) for model input
+    return torch.from_numpy(input_data.reshape(1, 1, psz, psz))
+
 def main():
-    model = BraggNN(imgsz=11, fcsz=(16, 8, 4, 2))
-    mdl_fn = 'models/fc16_8_4_2-sz11.pth'
-    model.load_state_dict(torch.load(mdl_fn, map_location=torch.device('cpu')))
+    #model = BraggNN(imgsz=11, fcsz=(16, 8, 4, 2))
+    #mdl_fn = 'models/fc16_8_4_2-sz11.pth'
+    #model.load_state_dict(torch.load(mdl_fn, map_location=torch.device('cpu')))
+    mdl_fn = 'models/int8_16_8_4_2-sz11-opset12.pth'
+    model = torch.export.load(mdl_fn).module()
 
     input_tensor = make_gaussian()
+    #input_tensor = generate_dummy_input()
     with torch.no_grad():
         pred = model.forward(input_tensor).cpu().numpy()
         print(pred * 11)
