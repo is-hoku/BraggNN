@@ -27,13 +27,13 @@ def main():
     #onnx_program.save("onnx/braggnn.onnx")
 
     # int8
-    int8_module = torch.export.load('models/int8_16_8_4_2-sz11-opset12.pth').module()
+    int8_module = torch.export.load('models/int8_16_8_4_2-sz11.pth').module()
     # For torch==1.6.0
     #int8_module = torch.load(
     #    'models/int8_16_8_4_2-sz11.pth',
     #    map_location=torch.device('cpu'),
     #).eval()
-    int8_output_path = "onnx/braggnn_int8_opset12.onnx"
+    int8_output_path = "onnx/braggnn_int8_pt2e.onnx"
 
     torch.onnx.export(
         int8_module,
@@ -42,11 +42,11 @@ def main():
         input_names=['input'],
         output_names=['output'],
         dynamic_axes={'input': {0: 'batch_size'}, 'output': {0: 'batch_size'}},
-        opset_version=12, # For use old opsets
+        #opset_version=12, # For use old opsets
         #opset_version=18,
         export_params=True,
         do_constant_folding=True,
-        dynamo=False, # For use old APIs
+        #dynamo=False, # For use old APIs
     )
 
 if __name__ == "__main__":
