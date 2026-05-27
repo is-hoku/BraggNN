@@ -5,12 +5,37 @@ from model import BraggNN
 from torch.utils.data import DataLoader
 from dataset import BraggNNDataset
 
+
 import tvm
 from tvm import relax
 from tvm.relax.frontend.torch import from_exported_program
 import tvm.relax.backend.contrib.gemmini
+import tvm.contrib.gemmini.build
 from tvm.relax.backend.pattern_registry import get_patterns_with_prefix
-from tvm.relax.transform import FuseOpsByPattern, MergeCompositeFunctions, RunCodegen
+from tvm.relax.transform import (
+    ConvertToDataflow,
+    Normalize,
+    CanonicalizeBindings,
+    FoldConstant,
+    FoldRedundantBroadcastTo,
+    DecomposeOpsForInference,
+    ConvertLayout,
+    EliminateCommonSubexpr,
+    DeadCodeElimination,
+    FuseOpsByPattern,
+    MergeCompositeFunctions,
+    FuseOps,
+    FuseTIR,
+    LegalizeOps,
+    StaticPlanBlockMemory,
+    RunCodegen,
+    CallTIRRewrite,
+    VMShapeLower,
+    LowerRuntimeBuiltin,
+    LowerAllocTensor,
+    KillAfterLastUse,
+    AttachGlobalSymbol,
+)
 from tvm.script import relax as R
 
 def make_gaussian(imgsz=11, x_cen=6.0, y_cen=5.0, sig_x=0.6, sig_y=1.5, amp=1000.0, norm=True):
@@ -78,7 +103,6 @@ def main():
     mod.show()
 
     has_gemmini_codegen = tvm.get_global_func("relax.ext.gemmini", True)
-    # has_gemmini_runtime = tvm.get_global_func("runtime.GemminiJSONRuntimeCreate", True)
     has_gemmini = has_gemmini_codegen #and has_gemmini_runtime
 
     target = tvm.target.Target("c")
@@ -86,24 +110,40 @@ def main():
     patterns = get_patterns_with_prefix("gemmini")
     print("Registered patterns:", [p.name for p in patterns])
 
-    mod = FuseOpsByPattern(patterns, bind_constants=False, annotate_codegen=True)(mod)
-    mod = MergeCompositeFunctions()(mod)
-    print("After partitioning:")
+    pipeline = tvm.transform.Sequential([
+        ConvertToDataflow(),
+        Normalize(),
+        FoldConstant(),
+        DecomposeOpsForInference(),
+        FoldRedundantBroadcastTo(),
+        #EliminateCommonSubexpr(),
+        CanonicalizeBindings(),
+        DeadCodeElimination(),
+
+        FuseOpsByPattern(patterns, annotate_codegen=True),
+        ConvertLayout({"relax.nn.conv2d": ["NHWC", "OHWI"]}),
+
+        #MergeCompositeFunctions(),
+        #FuseOps(),
+        #FuseTIR(),
+        #LegalizeOps(),
+        #DeadCodeElimination(),
+        #StaticPlanBlockMemory(),
+
+        RunCodegen(),
+
+        #CallTIRRewrite(),
+        #VMShapeLower(),
+        #LowerRuntimeBuiltin(),
+        #LowerAllocTensor(),
+        #KillAfterLastUse(),
+        #AttachGlobalSymbol(),
+    ])
+
+    with tvm.transform.PassContext(opt_level=3):
+        mod = pipeline(mod)
+    print("After pipeline:")
     print(mod)
-
-    if has_gemmini:
-        mod = RunCodegen()(mod)
-        print("After codegen:")
-        print(mod)
-
-        # with tvm.transform.PassContext(opt_level=3):
-        #     built = relax.build(mod, target)
-
-        # vm = relax.VirtualMachine(built, tvm.cpu())
-        # result = vm["main"](tvm.runtime.tensor(make_gaussian(), tvm.cpu()))
-
-        # assert result.numpy().shape == (1, 1)
-        # print("Execution completed. Output:", result.numpy())
 
 if __name__ == "__main__":
     main()
