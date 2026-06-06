@@ -7,6 +7,7 @@ from dataset import BraggNNDataset
 
 
 import tvm
+import tvm.contrib.gemmini.build
 from tvm import relax
 from tvm.relax.frontend.torch import from_exported_program
 import tvm.relax.backend.contrib.gemmini
@@ -18,6 +19,7 @@ from tvm.relax.transform import (
     CanonicalizeBindings,
     FoldConstant,
     FoldRedundantBroadcastTo,
+    FoldPermuteDims,
     DecomposeOpsForInference,
     ConvertLayout,
     EliminateCommonSubexpr,
@@ -35,8 +37,63 @@ from tvm.relax.transform import (
     LowerAllocTensor,
     KillAfterLastUse,
     AttachGlobalSymbol,
+    AnnotateTIROpPattern,
 )
-from tvm.script import relax as R
+
+
+#def npz_to_carray(params_path, params):
+#    with open(params_path, "w") as f:
+#        f.write("#pragma once\n\n")
+#        f.write("#include <stdint.h>\n\n")
+#
+#        for i, p in enumerate(params["main"]):
+#            arr = p.numpy()
+#            dtype = arr.dtype
+#
+#            if dtype == np.float32:
+#                c_type = "float"
+#                fmt = lambda x: f"{x:.8f}f"
+#            elif dtype == np.float64:
+#                c_type = "double"
+#                fmt = lambda x: f"{x:.16f}"
+#            elif dtype == np.int32:
+#                c_type = "int32_t"
+#                fmt = lambda x: str(int(x))
+#            elif dtype == np.int64:
+#                c_type = "int64_t"
+#                fmt = lambda x: str(int(x))
+#            elif dtype == np.int8:
+#                c_type = "int8_t"
+#                fmt = lambda x: str(int(x))
+#            else:
+#                c_type = "float"
+#                fmt = lambda x: f"{x:.8f}f"
+#
+#            shape_bracket = "".join(f"[{d}]" for d in arr.shape)
+#            shape_comment = "x".join(str(d) for d in arr.shape)
+#
+#            f.write(f"// shape: ({shape_comment})\n")
+#            f.write(f"static const {c_type} p_{i}{shape_bracket} = ")
+#
+#            def write_array(f, arr, fmt, depth=0):
+#                if arr.ndim == 1:
+#                    f.write("{")
+#                    f.write(", ".join(fmt(v) for v in arr))
+#                    f.write("}")
+#                else:
+#                    indent = "    " * depth
+#                    f.write("{\n")
+#                    for j, sub in enumerate(arr):
+#                        f.write(f"{indent}    ")
+#                        write_array(f, sub, fmt, depth + 1)
+#                        if j < len(arr) - 1:
+#                            f.write(",")
+#                        f.write("\n")
+#                    f.write(f"{indent}}}")
+#
+#            write_array(f, arr, fmt)
+#            f.write(";\n\n")
+
 
 def make_gaussian(imgsz=11, x_cen=6.0, y_cen=5.0, sig_x=0.6, sig_y=1.5, amp=1000.0, norm=True):
     x = np.arange(imgsz); y = np.arange(imgsz)
@@ -93,19 +150,22 @@ def main():
         exported_program = export(quantized_model, example_inputs)
         mod = from_exported_program(
             exported_program,
-            keep_params_as_input = True,
-            unwrap_unit_return_tuple = True,
+            keep_params_as_input=False,
+            unwrap_unit_return_tuple=True,
         )
 
     # Export PyTorch into Relax IR
-    mod, params = relax.frontend.detach_params(mod)
+    #mod, params = relax.frontend.detach_params(mod)
+
+    #params_path = "gemmini_out/params.h"
+    #npz_to_carray(params_path, params)
+    #print(f"Saved parameters to: {params_path}")
+
     print("After exporting:")
-    mod.show()
+    #mod.show()
+    print(mod.script())
 
     has_gemmini_codegen = tvm.get_global_func("relax.ext.gemmini", True)
-    has_gemmini = has_gemmini_codegen #and has_gemmini_runtime
-
-    target = tvm.target.Target("c")
 
     patterns = get_patterns_with_prefix("gemmini")
     print("Registered patterns:", [p.name for p in patterns])
@@ -116,34 +176,36 @@ def main():
         FoldConstant(),
         DecomposeOpsForInference(),
         FoldRedundantBroadcastTo(),
-        #EliminateCommonSubexpr(),
         CanonicalizeBindings(),
         DeadCodeElimination(),
 
-        FuseOpsByPattern(patterns, annotate_codegen=True),
         ConvertLayout({"relax.nn.conv2d": ["NHWC", "OHWI"]}),
-
-        #MergeCompositeFunctions(),
-        #FuseOps(),
-        #FuseTIR(),
-        #LegalizeOps(),
-        #DeadCodeElimination(),
-        #StaticPlanBlockMemory(),
-
+        FoldPermuteDims(),
+        FuseOpsByPattern(patterns, annotate_codegen=True, bind_constants=False),
+        MergeCompositeFunctions(),
         RunCodegen(),
 
-        #CallTIRRewrite(),
-        #VMShapeLower(),
-        #LowerRuntimeBuiltin(),
-        #LowerAllocTensor(),
-        #KillAfterLastUse(),
-        #AttachGlobalSymbol(),
+        LegalizeOps(),
+        AnnotateTIROpPattern(),
+        FuseOps(),
+        FuseTIR(),
+        FoldConstant(),
+        DeadCodeElimination(),
+
     ])
 
     with tvm.transform.PassContext(opt_level=3):
         mod = pipeline(mod)
     print("After pipeline:")
+    print(mod.script)
     print(mod)
+
+    #target = tvm.target.Target({"kind": "llvm", "mtriple": "riscv64-unknown-linux-gnu"})
+    target = tvm.target.Target("c")
+    ex = tvm.compile(mod, target)
+    ex.export_library("braggnn.so", cc="riscv64-unknown-linux-gnu-gcc")
+    print("All done")
+
 
 if __name__ == "__main__":
     main()
