@@ -1,3 +1,6 @@
+import os
+import sys
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'executorch'))
 import numpy as np
 import torch
 from torch.export import export
@@ -7,7 +10,6 @@ from dataset import BraggNNDataset
 
 
 import tvm
-import tvm.contrib.gemmini.build
 from tvm import relax
 from tvm.relax.frontend.torch import from_exported_program
 import tvm.relax.backend.contrib.gemmini
@@ -133,12 +135,18 @@ def main():
         convert_pt2e,
     )
 
-    from executorch.backends.xnnpack.quantizer.xnnpack_quantizer import (
-        get_symmetric_quantization_config,
-        XNNPACKQuantizer,
+    #from executorch.backends.xnnpack.quantizer.xnnpack_quantizer import (
+    #    get_symmetric_quantization_config,
+    #    XNNPACKQuantizer,
+    #)
+
+    from backends.gemmini.quantizer import (
+            GemminiQuantizer,
+            get_symmetric_quantization_config,
     )
 
-    quantizer = XNNPACKQuantizer().set_global(get_symmetric_quantization_config())
+    #quantizer = XNNPACKQuantizer().set_global(get_symmetric_quantization_config())
+    quantizer = GemminiQuantizer().set_global(get_symmetric_quantization_config())
     prepared_model = prepare_pt2e(exported_model, quantizer)
 
     calibrate(prepared_model, dl_input)
@@ -162,7 +170,9 @@ def main():
     #print(f"Saved parameters to: {params_path}")
 
     print("After exporting:")
-    #mod.show()
+    print("mod.show")
+    mod.show()
+    print("mod.script")
     print(mod.script())
 
     has_gemmini_codegen = tvm.get_global_func("relax.ext.gemmini", True)
@@ -197,14 +207,18 @@ def main():
     with tvm.transform.PassContext(opt_level=3):
         mod = pipeline(mod)
     print("After pipeline:")
+    print("mod.script")
     print(mod.script)
+    print("mod")
     print(mod)
 
     #target = tvm.target.Target({"kind": "llvm", "mtriple": "riscv64-unknown-linux-gnu"})
     target = tvm.target.Target("c")
     ex = tvm.compile(mod, target)
-    ex.export_library("braggnn.so", cc="riscv64-unknown-linux-gnu-gcc")
-    print("All done")
+    print(ex.as_text())   # dumps the VM bytecode / compiled IR
+    os.makedirs("gemmini_out", exist_ok=True)
+    ex.export_library("braggnn.so", cc="riscv64-unknown-linux-gnu-gcc", workspace_dir="gemmini_out")
+    print("BraggNN model was successfully compiled to .so file.")
 
 
 if __name__ == "__main__":
