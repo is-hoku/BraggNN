@@ -97,6 +97,22 @@ from tvm.relax.transform import (
 #            f.write(";\n\n")
 
 
+def relabel_input_nhwc(mod, fname="main"):
+    func = mod[fname]
+    old_x = func.params[0]
+    dtype = old_x.struct_info.dtype
+    n, c, h, w = [int(d) for d in old_x.struct_info.shape]
+    x_nhwc = relax.Var(old_x.name_hint, relax.TensorStructInfo((n, h, w, c), dtype))
+    perm = relax.op.permute_dims(x_nhwc, axes=[0, 3, 1, 2])
+    perm_block = relax.BindingBlock([relax.VarBinding(old_x, perm)])
+    body = func.body
+    new_body = relax.SeqExpr([perm_block] + list(body.blocks), body.body)
+    mod[fname] = relax.Function(
+        [x_nhwc], new_body, func.ret_struct_info, func.is_pure, func.attrs
+    )
+    return mod
+
+
 def make_gaussian(imgsz=11, x_cen=6.0, y_cen=5.0, sig_x=0.6, sig_y=1.5, amp=1000.0, norm=True):
     x = np.arange(imgsz); y = np.arange(imgsz)
     X, Y = np.meshgrid(x, y, indexing="xy")
@@ -152,15 +168,23 @@ def main():
     calibrate(prepared_model, dl_input)
 
     quantized_model = convert_pt2e(prepared_model)
+    #quantized_model_nhwc = quantized_model.to(memory_format=torch.channels_last)
     example_inputs = (torch.from_numpy(make_gaussian()).unsqueeze(0).unsqueeze(0),)
+    #inputs = torch.from_numpy(make_gaussian())
+    #example_inputs_nhwc = inputs.unsqueeze(0).unsqueeze(0).to(memory_format=torch.channels_last)
 
     with torch.no_grad():
-        exported_program = export(quantized_model, example_inputs)
+        #exported_program = export(quantized_model_nhwc, (example_inputs_nhwc,))
+        exported_program = export(quantized_model, (example_inputs,))
         mod = from_exported_program(
             exported_program,
             keep_params_as_input=False,
             unwrap_unit_return_tuple=True,
         )
+
+    # Redeclare main's input as NHWC (1, 11, 11, 1) so the compiled model's external
+    # interface matches the NHWC tensor the host harness (inference.cc) allocates.
+    mod = relabel_input_nhwc(mod)
 
     # Export PyTorch into Relax IR
     #mod, params = relax.frontend.detach_params(mod)
@@ -190,7 +214,8 @@ def main():
         DeadCodeElimination(),
 
         ConvertLayout({"relax.nn.conv2d": ["NHWC", "OHWI"]}),
-        FoldPermuteDims(),
+        FoldConstant(),
+        #FoldPermuteDims(),
         FuseOpsByPattern(patterns, annotate_codegen=True, bind_constants=False),
         MergeCompositeFunctions(),
         RunCodegen(),
