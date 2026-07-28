@@ -43,60 +43,6 @@ from tvm.relax.transform import (
 )
 
 
-#def npz_to_carray(params_path, params):
-#    with open(params_path, "w") as f:
-#        f.write("#pragma once\n\n")
-#        f.write("#include <stdint.h>\n\n")
-#
-#        for i, p in enumerate(params["main"]):
-#            arr = p.numpy()
-#            dtype = arr.dtype
-#
-#            if dtype == np.float32:
-#                c_type = "float"
-#                fmt = lambda x: f"{x:.8f}f"
-#            elif dtype == np.float64:
-#                c_type = "double"
-#                fmt = lambda x: f"{x:.16f}"
-#            elif dtype == np.int32:
-#                c_type = "int32_t"
-#                fmt = lambda x: str(int(x))
-#            elif dtype == np.int64:
-#                c_type = "int64_t"
-#                fmt = lambda x: str(int(x))
-#            elif dtype == np.int8:
-#                c_type = "int8_t"
-#                fmt = lambda x: str(int(x))
-#            else:
-#                c_type = "float"
-#                fmt = lambda x: f"{x:.8f}f"
-#
-#            shape_bracket = "".join(f"[{d}]" for d in arr.shape)
-#            shape_comment = "x".join(str(d) for d in arr.shape)
-#
-#            f.write(f"// shape: ({shape_comment})\n")
-#            f.write(f"static const {c_type} p_{i}{shape_bracket} = ")
-#
-#            def write_array(f, arr, fmt, depth=0):
-#                if arr.ndim == 1:
-#                    f.write("{")
-#                    f.write(", ".join(fmt(v) for v in arr))
-#                    f.write("}")
-#                else:
-#                    indent = "    " * depth
-#                    f.write("{\n")
-#                    for j, sub in enumerate(arr):
-#                        f.write(f"{indent}    ")
-#                        write_array(f, sub, fmt, depth + 1)
-#                        if j < len(arr) - 1:
-#                            f.write(",")
-#                        f.write("\n")
-#                    f.write(f"{indent}}}")
-#
-#            write_array(f, arr, fmt)
-#            f.write(";\n\n")
-
-
 def relabel_input_nhwc(mod, fname="main"):
     func = mod[fname]
     old_x = func.params[0]
@@ -123,6 +69,7 @@ def make_gaussian(imgsz=11, x_cen=6.0, y_cen=5.0, sig_x=0.6, sig_y=1.5, amp=1000
         if zmax > zmin: Z = (Z - zmin) / (zmax - zmin)
     return Z.astype(np.float32)
 
+
 def calibrate(model, data_loader):
     from torchao.quantization.pt2e import allow_exported_model_train_eval
     allow_exported_model_train_eval(model)
@@ -132,6 +79,7 @@ def calibrate(model, data_loader):
             # Process each sample individually since exported model expects batch_size=1
             for i in range(image.shape[0]):
                 model(image[i:i+1])
+
 
 def main():
     ds_input = BraggNNDataset(psz=11, rnd_shift=0, use='validation')
@@ -145,6 +93,15 @@ def main():
 
     example_inputs = (torch.randn(1, 1, 11, 11),)
     exported_model = torch.export.export(fp32_model, example_inputs).module()
+
+    #for n in exported_model.graph.nodes:
+    #    if n.op == "call_function" and "conv2d" in str(n.target):
+    #        stack = n.meta.get("nn_module_stack")
+    #        if not stack:
+    #            continue
+    #        for a in n.args[1:3]:
+    #            if hasattr(a, "meta") and a.op == "get_attr":
+    #                a.meta["nn_module_stack"] = stack
 
     from torchao.quantization.pt2e.quantize_pt2e import (
         prepare_pt2e,
@@ -163,6 +120,14 @@ def main():
 
     #quantizer = XNNPACKQuantizer().set_global(get_symmetric_quantization_config())
     quantizer = GemminiQuantizer().set_global(get_symmetric_quantization_config())
+
+    #narrow_attn_config = get_symmetric_quantization_config(act_qmin=-8, act_qmax=8)
+    #quantizer = (
+    #    GemminiQuantizer()
+    #    .set_global(get_symmetric_quantization_config())
+    #    .set_module_name("nlb.theta_layer", narrow_attn_config)
+    #    .set_module_name("nlb.phi_layer", narrow_attn_config)
+    #)
     prepared_model = prepare_pt2e(exported_model, quantizer)
 
     calibrate(prepared_model, dl_input)
@@ -213,9 +178,10 @@ def main():
         CanonicalizeBindings(),
         DeadCodeElimination(),
 
-        ConvertLayout({"relax.nn.conv2d": ["NHWC", "OHWI"]}),
+        ConvertLayout({"relax.nn.conv2d": ["NHWC", "HWIO"]}),
         FoldConstant(),
-        #FoldPermuteDims(),
+        FoldPermuteDims(),
+        #FoldConstant(),
         FuseOpsByPattern(patterns, annotate_codegen=True, bind_constants=False),
         MergeCompositeFunctions(),
         RunCodegen(),
@@ -241,6 +207,8 @@ def main():
     target = tvm.target.Target("c")
     ex = tvm.compile(mod, target)
     print(ex.as_text())   # dumps the VM bytecode / compiled IR
+    print(ex.as_python())  # Equivalent Python program
+    print(ex.stats())      # Summary statistics
     os.makedirs("gemmini_out", exist_ok=True)
     ex.export_library("braggnn.so", cc="riscv64-unknown-linux-gnu-gcc", workspace_dir="gemmini_out")
     print("BraggNN model was successfully compiled to .so file.")

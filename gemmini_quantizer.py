@@ -64,6 +64,15 @@ def main():
     example_inputs = (torch.randn(1, 1, 11, 11),)
     exported_model = torch.export.export(fp32_model, example_inputs).module()
 
+    for n in exported_model.graph.nodes:
+        if n.op == "call_function" and "conv2d" in str(n.target):
+            stack = n.meta.get("nn_module_stack")
+            if not stack:
+                continue
+            for a in n.args[1:3]:
+                if hasattr(a, "meta") and a.op == "get_attr":
+                    a.meta["nn_module_stack"] = stack
+
     from torchao.quantization.pt2e.quantize_pt2e import (
         prepare_pt2e,
         convert_pt2e,
@@ -73,7 +82,13 @@ def main():
         get_symmetric_quantization_config,
     )
 
-    quantizer = GemminiQuantizer().set_global(get_symmetric_quantization_config())
+    narrow_attn_config = get_symmetric_quantization_config(act_qmin=-8, act_qmax=8)
+    quantizer = (
+        GemminiQuantizer()
+        .set_global(get_symmetric_quantization_config())
+        .set_module_name("nlb.theta_layer", narrow_attn_config)
+        .set_module_name("nlb.phi_layer", narrow_attn_config)
+    )
     prepared_model = prepare_pt2e(exported_model, quantizer)
 
     calibrate(prepared_model, dl_input)
@@ -85,12 +100,25 @@ def main():
         int8_pred = quantized_model(test_input).cpu().numpy()
     print(f"int8  prediction (pixel coords): {int8_pred * 11}")
 
-    #export_inputs = (test_input,)
-    #with torch.no_grad():
-    #    exported_program = export(quantized_model, export_inputs)
+    int8_onnx_path = "onnx/braggnn_gemmini_quantizer_int8_pt2e.onnx"
+    torch.onnx.export(
+        quantized_model,
+        test_input,
+        int8_onnx_path,
+        input_names=['input'],
+        output_names=['output'],
+        dynamic_axes={'input': {0: 'batch_size'}, 'output': {0: 'batch_size'}},
+        export_params=True,
+        do_constant_folding=True,
+    )
+    print(f"saved {int8_onnx_path}")
 
-    #torch.export.save(exported_program, "models/int8_16_8_4_2-sz11.pth")
-    #print("saved models/int8_16_8_4_2-sz11.pth")
+    export_inputs = (test_input,)
+    with torch.no_grad():
+        exported_program = export(quantized_model, export_inputs)
+
+    torch.export.save(exported_program, "models/int8_gemmini_quantizer_16_8_4_2-sz11.pth")
+    print("saved models/int8_gemmini_quantizer_16_8_4_2-sz11.pth")
 
 
 if __name__ == "__main__":
