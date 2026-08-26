@@ -206,6 +206,7 @@ def main():
     #target = tvm.target.Target({"kind": "llvm", "mtriple": "riscv64-unknown-linux-gnu"})
     target = tvm.target.Target("c")
     ex = tvm.compile(mod, target)
+    #ex = relax.build(mod, target, exec_mode="compiled")
     print(ex.as_text())   # dumps the VM bytecode / compiled IR
     print(ex.as_python())  # Equivalent Python program
     print(ex.stats())      # Summary statistics
